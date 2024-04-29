@@ -1,0 +1,67 @@
+<div *ngIf="updateAvailable$ | async" class="update-button" xuiTooltip="update_available" (click)="update()">
+  <xui-icon>download</xui-icon>
+</div>
+
+<!--<div class="youtube-wrapper">-->
+<!--  <youtube-player [width]="500" [height]="280"></youtube-player>-->
+<!--  <ng-container *ngVar="currentSong$ | async as current">-->
+<!--    <img-->
+<!--      *ngIf="!(settings$ | async).videoVisible && current?.song?.youtubeId"-->
+<!--      [width]="500"-->
+<!--      [height]="280"-->
+<!--      [src]="current.song.thumbnail"-->
+<!--    />-->
+<!--  </ng-container>-->
+<!--</div>-->
+
+<cord-renderer></cord-renderer>
+
+<div class="buttons">
+  <ng-container [ngSwitch]="inQueue$ | async">
+    <div class="join" [class.disabled]="!(canEnqueue$ | async)" (click)="enqueue()" *ngSwitchCase="false">
+      <div class="icon blue">
+        <xui-icon>human-queue</xui-icon>
+      </div>
+      {{ 'dashboard.join_queue' | translate }}
+    </div>
+
+    <div class="join" (click)="dequeue()" *ngSwitchCase="true">
+      <div class="icon red">
+        <xui-icon>exit-run</xui-icon>
+      </div>
+      {{ 'dashboard.leave_queue' | translate }}
+    </div>
+  </ng-container>
+
+  <cord-controls></cord-controls>
+</div>
+
+<!--<div class="avatars" *ngVar="wooters$ | async as wooters">-->
+<!--  <div-->
+<!--    [class.wooted]="hasWooted(p.key, wooters)"-->
+<!--    class="origin"-->
+<!--    *ngFor="let p of listeners | keyvalue; trackBy: trackAvatars"-->
+<!--    [style.left.%]="p.value.x"-->
+<!--    [style.top.%]="p.value.y"-->
+<!--    [style.z-index]="p.value.y"-->
+<!--  >-->
+<!--    <cord-avatar [character]="p.value.user.character" [xuiContextMenuTriggerFor]="menu.menu" [userInfo]="p.value.user">-->
+<!--      <cord-user-context-menu #menu [info]="p.value.user"></cord-user-context-menu>-->
+<!--    </cord-avatar>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--<div class="dj-place">-->
+<!--  <cord-avatar-->
+<!--    *ngIf="dj"-->
+<!--    [character]="dj.character"-->
+<!--    [userInfo]="dj"-->
+<!--    [xuiContextMenuTriggerFor]="menu.menu"-->
+<!--  ></cord-avatar>-->
+<!--  <cord-user-context-menu #menu [info]="dj"></cord-user-context-menu>-->
+<!--</div>-->
+
+<div class="exp" *ngIf="expNotif">
+  +<span class="highlight">{{ expNotif }}</span> XP
+</div>
+<div class="exp level" *ngIf="levelNotif">{{ levelNotif }} LEVEL</div>

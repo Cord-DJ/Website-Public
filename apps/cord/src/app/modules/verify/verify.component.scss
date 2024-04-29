@@ -1,0 +1,35 @@
+@use 'xui';
+
+:host {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url('/assets/background-1.webp') no-repeat;
+  background-size: cover;
+}
+
+.dialog {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  width: 400px;
+  height: 300px;
+  border-radius: 5px;
+  padding: 32px;
+
+  @include xui.fill(primary);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.error-text {
+  color: var(--color-error-default);
+  font-size: 0.8rem;
+  margin-left: 16px;
+}

@@ -1,0 +1,29 @@
+:host {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+h5 {
+  grid-column: span 2;
+  padding-bottom: 24px;
+}
+
+.banner {
+  width: 180px;
+}
+
+form {
+  width: 100%;
+  display: grid;
+  place-items: center;
+  grid-template-columns: 1fr 1fr;
+}
+
+.upload {
+  display: flex;
+  flex-direction: column;
+
+  button {
+    align-self: center;
+  }
+}

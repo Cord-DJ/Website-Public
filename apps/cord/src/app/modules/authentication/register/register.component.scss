@@ -1,0 +1,58 @@
+@use 'xui';
+
+:host {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background: url('/assets/background-1.webp') no-repeat;
+  background-size: cover;
+}
+
+.dialog {
+  width: 400px;
+  min-height: 500px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+
+  border-radius: 5px;
+  @include xui.fill(primary);
+  @include xui.elevate(medium);
+
+  h5 {
+    padding-top: 40px;
+    padding-bottom: 20px;
+  }
+
+  .form {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+
+    padding-top: 10px;
+    padding-bottom: 40px;
+  }
+
+  .login {
+    padding-bottom: 20px;
+  }
+}
+
+.next-field {
+  margin-top: 20px;
+}
+
+ng-hcaptcha {
+  align-self: center;
+  margin-top: 40px;
+}
+
+.error-text {
+  color: var(--color-error-default);
+  font-size: 0.8rem;
+  margin-left: 16px;
+}

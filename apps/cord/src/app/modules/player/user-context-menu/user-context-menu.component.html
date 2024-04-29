@@ -1,0 +1,35 @@
+<xui-context-menu #menu>
+  <xui-button>Become a Fan</xui-button>
+  <xui-button>Add Friend</xui-button>
+  <xui-button>Block</xui-button>
+  <hr />
+
+  <xui-button *ngIf="(canManageQueue$ | async) && isInQueue" (click)="removeFromQueue()">
+    Remove from Queue
+  </xui-button>
+  <xui-button color="error" *ngIf="canMute$ | async" [xuiMenuTriggerFor]="muteMenu">
+    {{ 'user_context_menu.mute' | translate }}<xui-icon>chevron-right</xui-icon>
+  </xui-button>
+  <xui-button color="error" *ngIf="canKick$ | async" (click)="kick()">
+    {{ 'user_context_menu.kick' | translate }}
+  </xui-button>
+  <xui-button color="error" *ngIf="canBan$ | async" [xuiMenuTriggerFor]="banMenu">
+    {{ 'user_context_menu.ban' | translate }}<xui-icon>chevron-right</xui-icon>
+  </xui-button>
+</xui-context-menu>
+
+<xui-context-menu #banMenu>
+  <xui-button color="error" (click)="ban(5)">{{ 'duration.minutes_5' | translate }}</xui-button>
+  <xui-button color="error" (click)="ban(30)">{{ 'duration.minutes_30' | translate }}</xui-button>
+  <xui-button color="error" (click)="ban(60)">{{ 'duration.hours_1' | translate }}</xui-button>
+  <xui-button color="error" (click)="ban(1440)">{{ 'duration.days_1' | translate }}</xui-button>
+  <xui-button color="error" (click)="ban(-1)">{{ 'duration.permanent' | translate }}</xui-button>
+</xui-context-menu>
+
+<xui-context-menu #muteMenu>
+  <xui-button color="error" (click)="mute(5)">{{ 'duration.minutes_5' | translate }}</xui-button>
+  <xui-button color="error" (click)="mute(30)">{{ 'duration.minutes_30' | translate }}</xui-button>
+  <xui-button color="error" (click)="mute(60)">{{ 'duration.hours_1' | translate }}</xui-button>
+  <xui-button color="error" (click)="mute(1440)">{{ 'duration.days_1' | translate }}</xui-button>
+  <xui-button color="error" (click)="mute(-1)">{{ 'duration.permanent' | translate }}</xui-button>
+</xui-context-menu>

@@ -1,0 +1,17 @@
+{
+  "name": "Cord.DJ",
+  "short_name": "Cord.DJ",
+  "theme_color": "#0073a6",
+  "background_color": "#32383c",
+  "display": "fullscreen",
+
+  "scope": "./",
+  "start_url": "./",
+  "icons": [
+    {
+      "src": "/assets/logo.svg",
+      "sizes": "any",
+      "purpose": "maskable any"
+    }
+  ]
+}

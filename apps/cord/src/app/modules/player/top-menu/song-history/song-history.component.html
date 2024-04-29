@@ -1,0 +1,43 @@
+<div (click)="onClick()" class="button" xuiTooltip="song_history.button">
+  <xui-icon>history</xui-icon>
+</div>
+
+<ng-container *ngVar="songHistory$ | async as history">
+  <div class="info x-scrollbar-thin scrollbar-thin-primary" [@inOutAnimation] *ngIf="showHistory">
+    <div class="song-entries">
+      <div class="song" *ngFor="let entry of history">
+        <img width="40" src="https://img.youtube.com/vi/{{ entry.song.youtubeId }}/mqdefault.jpg" />
+        <div>
+          {{ entry.song.author }} - {{ entry.song.name }} <span class="time">{{ createdTime(entry) }}</span>
+        </div>
+
+        <div></div>
+
+        <div class="votes">
+          <div class="up-votes" *ngIf="entry.upvotes > 0" xuiTooltip="song_history.total_upvotes">
+            <xui-icon>arrow-up-bold</xui-icon>
+            {{ entry.upvotes }}
+          </div>
+          <div class="steals" *ngIf="entry.steals > 0" xuiTooltip="song_history.total_steals">
+            <xui-icon>star</xui-icon>
+            {{ entry.steals }}
+          </div>
+          <div class="down-votes" *ngIf="entry.downvotes > 0" xuiTooltip="song_history.total_downvotes">
+            <xui-icon>arrow-down-bold</xui-icon>
+            {{ entry.downvotes }}
+          </div>
+
+          <div class="plus-button" [xuiMenuTriggerFor]="addPlaylistMenu">
+            <xui-icon>plus</xui-icon>
+          </div>
+        </div>
+
+        <xui-context-menu #addPlaylistMenu>
+          <xui-button *ngFor="let pl of playlists$ | async" (click)="addToPlaylist(pl, entry.song)">
+            {{ pl.name }}
+          </xui-button>
+        </xui-context-menu>
+      </div>
+    </div>
+  </div>
+</ng-container>

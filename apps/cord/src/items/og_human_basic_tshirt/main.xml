@@ -1,0 +1,21 @@
+<style>
+  .shirt_color_red { fill: #b22222; }
+  .shirt_color_green { fill: #22B573; }
+  .shirt_color_blue { fill: #226ab2; }
+  .shirt_color_lime { fill: #74FF91; }
+  .shirt_color_orange { fill: #FEA443; }
+  .shirt_color_gray_purple { fill: #705E78; }
+  .shirt_color_burgundy { fill: #812F33; }
+  .shirt_color_dark_blue { fill: #0C4FB3; }
+  .shirt_color_shady_blue { fill: #3B8AFF; }
+  .shirt_color_sky_blue { fill: #66D8E8; }
+  .shirt_color_dark_pink { fill: #D982BA; }
+  .shirt_color_purple { fill: #BE65BF; }
+  .shirt_color_dark_purple { fill: #7B3CA6; }
+  .shirt_color_cream_white { fill: #DCE6F2; }
+  .shirt_color_gold { fill: #FFE48C; }
+</style>
+
+<rect x="14" y="34" class="shirt_{SHIRT_MODIFICATION}" width="22" height="32"/>
+<rect x="9.47" y="35.11" transform="matrix(0.9518 0.3066 -0.3066 0.9518 15.3051 -1.2)" class="shirt_{SHIRT_MODIFICATION}" width="4" height="26"/>
+<rect x="36.92" y="34.38" transform="matrix(0.9555 -0.2949 0.2949 0.9555 -12.2395 13.5834)" class="shirt_{SHIRT_MODIFICATION}" width="4" height="26"/>

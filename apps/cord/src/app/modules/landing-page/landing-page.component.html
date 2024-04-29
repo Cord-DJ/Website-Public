@@ -1,0 +1,77 @@
+<header class="menu">
+  <div class="logo" routerLink="/">
+    <img alt="Cord DJ" src="/assets/logo.svg" />
+    <div class="cord-dj">Cord.DJ</div>
+  </div>
+
+  <nav>
+    <a routerLink="/">Home</a>
+    <a href="https://blog.cord.dj/" target="_blank">Blog</a>
+    <a routerLink="/download">Download</a>
+  </nav>
+
+  <div class="buttons">
+    <div class="user-info" *ngIf="userInfo$ | async as userInfo; else notLogged" [xuiMenuTriggerFor]="userMenu">
+      <div class="avatar">
+        <img [src]="userInfo.avatarUrl" />
+      </div>
+      {{ userInfo.name }}
+
+      <xui-context-menu #userMenu>
+        <xui-button (click)="logout()">Log out</xui-button>
+      </xui-context-menu>
+    </div>
+    <ng-template #notLogged>
+      <xui-button class="login-button" routerLink="/auth">Login</xui-button>
+    </ng-template>
+  </div>
+</header>
+
+<div class="content">
+  <router-outlet></router-outlet>
+</div>
+
+<footer>
+  <!--  <div class="extra-box">-->
+  <!--extra-->
+  <!--  </div>-->
+
+  <div class="info-box">
+    <div class="main-stuff">
+      <img alt="Cord DJ" src="/assets/logo.svg" />
+      Cord.DJ
+    </div>
+    <div></div>
+
+    <div class="stuff">
+      <div class="title">Product</div>
+      <a routerLink="/download">Download</a>
+      <a routerLink="/turbo">Turbo</a>
+      <a href="https://status.cord.dj/" target="_blank">Status</a>
+    </div>
+
+    <div class="stuff">
+      <div class="title">Cord</div>
+      <a routerLink="/partnership">Partnership</a>
+      <a routerLink="/partnership-code-of-conduct">Partnership Code of Conduct</a>
+    </div>
+
+    <div class="stuff">
+      <div class="title">Resources</div>
+      <a href="https://forms.office.com/r/fniPr0Rt7k" target="_blank">Feedback</a>
+      <a href="https://discord.gg/p7B6WMfjPQ" target="_blank">Discord</a>
+      <a href="https://twitter.com/CordDJ1" target="_blank">Twitter</a>
+      <a href="https://www.youtube.com/channel/UCm481khNkpQVKq4z2Q2HtEQ" target="_blank">Youtube</a>
+      <a href="https://www.facebook.com/Cord.DJ" target="_blank">Facebook</a>
+      <a href="https://blog.cord.dj/" target="_blank">Blog</a>
+    </div>
+
+    <div class="stuff">
+      <div class="title">Policies</div>
+      <a routerLink="/privacy">Privacy</a>
+      <a routerLink="/terms">Terms</a>
+      <a routerLink="/cookies">Cookie Settings</a>
+      <a routerLink="/guidelines">Guidelines</a>
+    </div>
+  </div>
+</footer>

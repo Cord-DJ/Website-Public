@@ -1,0 +1,26 @@
+<h5>Overview</h5>
+
+<form [formGroup]="model">
+  <div class="upload">
+    <label>{{ 'settings.icon_upload' | translate }}</label>
+    <xui-image-upload type="round" formControlName="icon"></xui-image-upload>
+    <xui-button (click)="delete('icon')">{{ 'reset' | translate }}</xui-button>
+  </div>
+
+  <div style="width: 100%">
+    <label>{{ 'settings.room_name' | translate }}</label>
+    <xui-input color="dark" [placeholder]="'settings.room_name' | translate" formControlName="name"></xui-input>
+  </div>
+
+  <div class="upload">
+    <label>{{ 'settings.banner_upload' | translate }}</label>
+    <xui-image-upload class="banner" [aspectRatio]="300 / 138" formControlName="banner"></xui-image-upload>
+    <xui-button (click)="delete('banner')">{{ 'reset' | translate }}</xui-button>
+  </div>
+
+  <div class="upload">
+    <label>{{ 'settings.wallpaper_upload' | translate }}</label>
+    <xui-image-upload class="banner" [aspectRatio]="900 / 500" formControlName="wallpaper"></xui-image-upload>
+    <xui-button (click)="delete('wallpaper')">{{ 'reset' | translate }}</xui-button>
+  </div>
+</form>

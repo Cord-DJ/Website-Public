@@ -1,0 +1,16 @@
+@use 'xui';
+
+:host {
+  display: grid;
+  row-gap: 64px;
+  grid-template-columns: 1fr 1fr;
+
+  padding: 24px;
+
+  @include xui.fill(floating);
+  @include xui.elevate(high);
+}
+
+h6 {
+  grid-column: span 2;
+}

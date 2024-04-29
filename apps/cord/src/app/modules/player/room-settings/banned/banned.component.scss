@@ -1,0 +1,42 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-family: var(--font-headline);
+}
+
+.members {
+  width: 50%;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+
+  .member {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    padding: 5px 10px;
+
+    .avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-right: 10px;
+
+      background-color: var(--color-bg-primary);
+
+      img {
+        width: 100%;
+      }
+    }
+
+    &:hover {
+      background-color: var(--color-bg-secondary-alt);
+    }
+  }
+}

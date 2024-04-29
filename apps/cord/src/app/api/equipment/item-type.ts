@@ -1,0 +1,23 @@
+export enum ItemType {
+  Race = 1,
+  Skin,
+  Head,
+  Face,
+  Neck,
+  Shoulders,
+  Back,
+  Chest,
+  Shirt,
+  Wrist,
+  Hands,
+  Waist,
+  Legs,
+  Feet,
+  Finger,
+  Trinket,
+  Eyes,
+  Hair,
+  Hand,
+  Dance,
+  Event
+}

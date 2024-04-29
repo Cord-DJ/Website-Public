@@ -1,0 +1,15 @@
+<h1 translate>room_settings.muted_users</h1>
+
+<div class="members">
+  <div class="member" *ngFor="let user of mutedUsers$ | async">
+    <div class="avatar">
+      <img [src]="user.avatarUrl" />
+    </div>
+    {{ user.name }}
+    <xui-button type="icon" (click)="unban(user)">
+      <xui-icon>close</xui-icon>
+    </xui-button>
+  </div>
+
+  <div class="noone" *ngIf="!(mutedUsers$ | async)?.length">{{ 'room_settings.none_muted' | translate }}</div>
+</div>

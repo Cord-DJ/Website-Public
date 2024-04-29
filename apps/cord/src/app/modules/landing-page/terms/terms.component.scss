@@ -1,0 +1,43 @@
+:host {
+  display: flex;
+  justify-content: center;
+
+  margin: 32px 0;
+}
+
+.content {
+  width: 90%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+}
+
+section {
+  margin-top: 48px;
+
+  ul {
+    padding-top: 24px;
+
+    li {
+      margin: 8px 0;
+    }
+  }
+
+  h6 {
+    margin: 40px 0;
+    font-weight: 400;
+  }
+
+  h5 {
+    margin: 40px 0;
+  }
+}
+
+p {
+  margin-bottom: 20px;
+}
+
+strong {
+  font-size: unset;
+  font-weight: 700;
+}

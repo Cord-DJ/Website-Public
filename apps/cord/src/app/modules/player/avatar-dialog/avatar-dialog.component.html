@@ -1,0 +1,69 @@
+<ng-container cdkDropListGroup>
+  <div class="presets">
+    <h6 translate>character.presets</h6>
+    <div class="preset" *ngFor="let preset of presets" [xuiMenuTriggerFor]="presetMenu">
+      <!--      <xui-decagram *ngIf="preset.activated" type="circle" color="success">check</xui-decagram>-->
+      <xui-decagram type="circle" color="success">check</xui-decagram>
+      <cord-avatar [character]="preset.character"></cord-avatar>
+
+      <xui-context-menu #presetMenu>
+        <!--        <xui-button (click)="activatePreset(preset)" [disabled]="preset.activated">-->
+        <!--          {{ 'character.activate' | translate }}-->
+        <!--        </xui-button>-->
+        <xui-button (click)="loadPreset(preset)"> {{ 'character.load' | translate }}</xui-button>
+        <xui-button (click)="savePreset(preset)">{{ 'character.save_to' | translate }}</xui-button>
+        <!--        <xui-button (click)="resetPreset(preset)">{{ 'character.reset' | translate }}</xui-button>-->
+      </xui-context-menu>
+
+      <xui-icon class="menu">menu</xui-icon>
+    </div>
+  </div>
+
+  <div class="character">
+    <div style="grid-row: 1; grid-column: 1"></div>
+    <div style="grid-row: 1; grid-column: 6"></div>
+    <div style="grid-row: 10; grid-column: 1"></div>
+    <div style="grid-row: 10; grid-column: 6"></div>
+    <cord-avatar [character]="loaded?.character"></cord-avatar>
+
+    <cord-slot
+      [type]="toItemType(slot)"
+      [class.highlight]="toItemType(slot) === highlight"
+      [position]="positions[i]"
+      [itemInstance]="loaded?.character[slot]"
+      *ngFor="let slot of slots; let i = index"
+      (contextmenu)="$event.preventDefault(); removeSlot(slot)"
+      (modificationSelected)="selectModification(slot, $event)"
+      cdkDropList
+      (cdkDropListDropped)="onEquip($event, slot)"
+    ></cord-slot>
+  </div>
+
+  <div class="controls" cdkDropList cdkDropListSortingDisabled>
+    <div class="group" *ngFor="let group of items">
+      <div class="name">
+        <xui-icon (click)="toggleGroup(group.name)">{{ isOpened(group.name) ? 'minus' : 'plus' }}</xui-icon>
+        {{ group.name }}
+      </div>
+      <ng-container *ngIf="isOpened(group.name)">
+        <div
+          class="item"
+          *ngFor="let instance of group.itemInstances"
+          cdkDrag
+          (cdkDragStarted)="onDragStarted($event)"
+          (cdkDragEnded)="onDragEnded()"
+          [cdkDragData]="instance"
+        >
+          <div class="icon" [style.border-color]="instance.item.qualityColor">
+            <img *ngIf="instance.item.assetName" [src]="instance.item.iconRef" />
+          </div>
+          <div class="preview" *cdkDragPreview>
+            <img *ngIf="instance.item.assetName" [src]="instance.item.iconRef" />
+          </div>
+          <div *cdkDragPlaceholder></div>
+          {{ instance.item.name }}
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</ng-container>

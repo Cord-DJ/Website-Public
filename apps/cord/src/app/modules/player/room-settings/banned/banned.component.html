@@ -1,0 +1,15 @@
+<h1 translate>room_settings.banned_users</h1>
+
+<div class="members">
+  <div class="member" *ngFor="let user of bannedUsers$ | async">
+    <div class="avatar">
+      <img [src]="user.avatarUrl" />
+    </div>
+    {{ user.name }}
+    <xui-button type="icon" (click)="unban(user)">
+      <xui-icon>close</xui-icon>
+    </xui-button>
+  </div>
+
+  <div class="noone" *ngIf="!(bannedUsers$ | async)?.length">{{ 'room_settings.none_banned' | translate }}</div>
+</div>

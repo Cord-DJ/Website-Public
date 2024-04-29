@@ -1,0 +1,23 @@
+<h5 translate>settings.profile</h5>
+
+<div [formGroup]="model">
+  <div>
+    <label translate>settings.name</label>
+    <xui-input color="dark" placeholder="Name" formControlName="name"></xui-input>
+  </div>
+
+  <div class="uploads">
+    <div>
+      <label translate>settings.avatar_upload</label>
+      <xui-image-upload type="round" formControlName="avatar"></xui-image-upload>
+    </div>
+    <div>
+      <label translate>settings.banner_upload</label>
+      <xui-image-upload class="banner" [aspectRatio]="600 / 240" formControlName="banner"></xui-image-upload>
+    </div>
+  </div>
+
+  <xui-button type="raised" (click)="changePassword()">{{ 'settings.change_password' | translate }}</xui-button>
+</div>
+
+<cord-user-info [avatarSource]="avatar$ | async" [bannerSource]="banner$ | async" [info]="me"></cord-user-info>

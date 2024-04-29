@@ -1,0 +1,147 @@
+@use 'xui';
+
+:host {
+  width: 400px;
+  height: 400px;
+
+  overflow: hidden;
+  border-radius: 5px;
+  padding-top: 8px;
+
+  @include xui.fill(secondary);
+  @include xui.elevate(high);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+
+  button {
+    padding: 4px 8px;
+    cursor: pointer;
+
+    opacity: 0.8;
+    color: inherit;
+    background-color: unset;
+    font-weight: 700;
+
+    text-decoration: line-through;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &.active {
+      color: var(--color-primary-default-contrast);
+      background-color: var(--color-primary-default);
+
+      opacity: 1;
+      cursor: not-allowed;
+      border-radius: 4px;
+      text-decoration: none;
+    }
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.gifs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 8px;
+  overflow-y: auto;
+
+  .entry {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 110px;
+    overflow: hidden;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.2s;
+
+    background-color: var(--color-primary-default);
+
+    &:hover {
+      border: 3px var(--color-primary-default) solid;
+    }
+
+    .overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .name {
+      position: absolute;
+      font-weight: 700;
+    }
+
+    img {
+      flex: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.search {
+  height: 64px;
+  border-bottom: 1px var(--color-bg-tertiary) solid;
+  padding: 12px 16px;
+
+  xui-icon {
+    color: white;
+  }
+
+  .clear-search {
+    cursor: pointer;
+  }
+}
+//
+//.stuff {
+//  grid-row: 2 / 2;
+//  grid-column: 2 / 2;
+//}
+//
+//.source {
+//  display: flex;
+//  flex-direction: column;
+//  align-items: center;
+//
+//  overflow-y: auto;
+//  padding-top: 8px;
+//  background-color: var(--background-ternary);
+//
+//  &::-webkit-scrollbar {
+//    display: none;
+//  }
+//
+//  .src {
+//    width: 32px;
+//    height: 32px;
+//    min-height: 32px;
+//
+//    display: grid;
+//    place-items: center;
+//
+//    margin-bottom: 8px;
+//    box-sizing: content-box;
+//    background-color: yellowgreen;
+//    border-radius: 5px;
+//  }
+//}

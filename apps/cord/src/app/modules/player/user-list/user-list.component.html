@@ -1,0 +1,32 @@
+<ul>
+  <li class="list" *ngFor="let role of roles$ | async">
+    <div class="role-name">{{ role.name }} — {{ role.members.length }}</div>
+    <ul class="list">
+      <li
+        class="user"
+        *ngFor="let member of role.members"
+        [userInfo]="member.user"
+        [class.offline]="role.name === 'Offline'"
+        [xuiContextMenuTriggerFor]="menu.menu"
+      >
+        <div class="avatar">
+          <!-- <div *ngIf="user.isInRoom" class="in-room"></div> -->
+          <img [src]="member.user.avatarUrl + '?size=40'" />
+        </div>
+
+        <div class="name" [style.color]="getUserColor(member.user.id) | async">
+          {{ member.user.name }}
+        </div>
+
+        <xui-icon class="green" *ngIf="member.vote === 'up'">arrow-up-bold</xui-icon>
+        <xui-icon class="red" *ngIf="member.vote === 'down'">arrow-down-bold</xui-icon>
+        <xui-icon class="blue" *ngIf="member.steal">star</xui-icon>
+
+        <cord-user-context-menu #menu [info]="member.user"></cord-user-context-menu>
+      </li>
+    </ul>
+  </li>
+  <li class="list">
+    <div class="role-name">{{ 'user_list.anonymous' | translate }} — {{ anonymousCount$ | async }}</div>
+  </li>
+</ul>

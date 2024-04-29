@@ -1,0 +1,63 @@
+<ng-container [ngSwitch]="status">
+  <xui-tab-group *ngSwitchCase="Status.None">
+    <xui-tab title="Youtube">
+      <div class="container">
+        <label translate>import.label_youtube</label>
+        <xui-input color="dark" [formControl]="link"></xui-input>
+
+        <xui-button type="raised" (click)="importYoutube()">{{ 'import.import' | translate }}</xui-button>
+      </div>
+    </xui-tab>
+
+    <xui-tab title="Spotify">
+      <div class="container">
+        <label *ngIf="isMultiple; else playlistId" translate>import.label_spotify_user</label>
+        <ng-template #playlistId>
+          <label translate>import.label_spotify_playlist</label>
+        </ng-template>
+
+        <div class="row">
+          <xui-input color="dark" [formControl]="link"></xui-input>
+          <xui-select color="dark" [formControl]="type">
+            <xui-option value="playlist">Playlist ID</xui-option>
+            <xui-option value="user">User ID</xui-option>
+          </xui-select>
+        </div>
+        <p class="link-example" *ngIf="isMultiple">https://open.spotify.com/user/<b>&lt;ID&gt;</b></p>
+
+        <ng-container *ngIf="isMultiple">
+          <label class="playlists" translate>import.playlists</label>
+          <ui-select-list [formControl]="selectedPlaylists" [options]="playlists$ | async"></ui-select-list>
+        </ng-container>
+
+        <xui-button type="raised" (click)="importSpotify()">
+          {{ (isMultiple ? 'import.import_all' : 'import.import') | translate }}
+        </xui-button>
+      </div>
+    </xui-tab>
+  </xui-tab-group>
+
+  <ng-container *ngSwitchCase="Status.Importing">
+    <div class="loading-container">
+      <xui-spinner></xui-spinner>
+      <div class="text">
+        <div>{{ 'import.importing' | translate }}{{ importedCount }}/{{ totalPlaylists }}</div>
+        {{ 'import.wait_message' | translate }}
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="Status.Success">
+    <div class="loading-container">
+      <mat-icon class="icon success" svgIcon="check-bold"></mat-icon>
+      <div class="text" translate>import.success</div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="Status.Error">
+    <div class="loading-container">
+      <mat-icon class="icon error" svgIcon="close-thick"></mat-icon>
+      <div class="text" translate>import.error</div>
+    </div>
+  </ng-container>
+</ng-container>

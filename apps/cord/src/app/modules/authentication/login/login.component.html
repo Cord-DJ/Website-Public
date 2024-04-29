@@ -1,0 +1,22 @@
+<div class="dialog">
+  <h5>{{ 'login.title' | translate }}</h5>
+
+  <form class="form" [formGroup]="model">
+    <div>
+      <label>{{ 'email' | translate }}</label>
+      <xui-input formControlName="email" [placeholder]="'email' | translate"></xui-input>
+    </div>
+
+    <div class="password">
+      <label>{{ 'password' | translate }}</label>
+      <xui-input formControlName="password" [placeholder]="'password' | translate" type="password"></xui-input>
+    </div>
+
+    <a class="password-recovery" (click)="passwordRecovery()">
+      {{ 'login.password_recovery' | translate }}
+    </a>
+    <xui-button type="raised" [onClick]="login">{{ 'login.button' | translate }}</xui-button>
+  </form>
+
+  <a class="register" routerLink="/auth/register">{{ 'login.registration_link' | translate }}</a>
+</div>

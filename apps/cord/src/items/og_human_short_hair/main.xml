@@ -1,0 +1,19 @@
+<style>
+  .hair_color_red { fill: #b22222; }
+  .hair_color_green { fill: #22B573; }
+  .hair_color_blue { fill: #226ab2; }
+  .hair_color_lime { fill: #74FF91; }
+  .hair_color_orange { fill: #FEA443; }
+  .hair_color_gray_purple { fill: #705E78; }
+  .hair_color_burgundy { fill: #812F33; }
+  .hair_color_dark_blue { fill: #0C4FB3; }
+  .hair_color_shady_blue { fill: #3B8AFF; }
+  .hair_color_sky_blue { fill: #66D8E8; }
+  .hair_color_dark_pink { fill: #D982BA; }
+  .hair_color_purple { fill: #BE65BF; }
+  .hair_color_dark_purple { fill: #7B3CA6; }
+  .hair_color_cream_white { fill: #DCE6F2; }
+  .hair_color_gold { fill: #FFE48C; }
+</style>
+
+<polygon class="hair_{HAIR_MODIFICATION}" points="9.38,21.68 12.65,16.2 17.38,13.34 20.24,14.57 26.23,11.88 33.9,14.65 38.48,18.65 42.46,15.81 36.59,10.72 32.08,8.1 33.53,5.33 28.49,6.13 26.23,1.99 25.07,6.72 19.32,3.88 20.24,7.37 16.58,8.68 13.24,5.7 12.14,8.68 13.24,10.65 11.05,13.19 8.24,17.63 "/>

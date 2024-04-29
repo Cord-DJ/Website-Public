@@ -1,0 +1,53 @@
+<!--<div class="item item-disabled" xuiTooltip="footer.store">-->
+<!--  <xui-icon>cart-outline</xui-icon>-->
+<!--</div>-->
+<!--<div class="item item-disabled" xuiTooltip="footer.profile">-->
+<!--  <xui-icon>account-outline</xui-icon>-->
+<!--</div>-->
+
+<div class="content">
+  <!--  <div class="user" *ngIf="me$ | async as me" [userInfo]="me" [xuiContextMenuTriggerFor]="menu">-->
+  <div class="user" *ngIf="me$ | async as me" (click)="openUserProfile()">
+    <div class="avatar">
+      <img [src]="me.avatarUrl" />
+    </div>
+    <div class="name">{{ me.name }}</div>
+    <div class="level">
+      <ng-container *ngVar="me$ | async as me">
+        Lv. {{ me.level }}
+        <div class="experience">
+          <div [style.width.%]="me?.remainingBoostPercentage" class="boost"></div>
+          <div [style.width.%]="me?.expPercentage" class="gained"></div>
+        </div>
+      </ng-container>
+    </div>
+
+    <xui-status [type]="status$ | async"></xui-status>
+  </div>
+
+  <xui-button type="icon" xuiTooltip="footer.character" (click)="openCharacter()">
+    <xui-icon>face-recognition</xui-icon>
+  </xui-button>
+
+  <xui-button type="icon" xuiTooltip="footer.settings" (click)="openSettings()">
+    <xui-icon>cog</xui-icon>
+  </xui-button>
+</div>
+
+<xui-settings #settings [items]="menuItems"></xui-settings>
+
+<xui-context-menu #menu>
+  <xui-button (click)="setStatus(Status.Online)">
+    <span class="menu-button"><xui-status type="online"></xui-status> Online</span>
+  </xui-button>
+  <hr />
+  <xui-button (click)="setStatus(Status.Idle)">
+    <span class="menu-button"><xui-status type="idle"></xui-status> Idle</span>
+  </xui-button>
+  <xui-button (click)="setStatus(Status.DnD)">
+    <span class="menu-button"><xui-status type="dnd"></xui-status> Do not Disturb</span>
+  </xui-button>
+  <xui-button (click)="setStatus(Status.Offline)">
+    <span class="menu-button"><xui-status type="offline"></xui-status> Invisible</span>
+  </xui-button>
+</xui-context-menu>

@@ -1,0 +1,29 @@
+<style type="text/css">
+  .legs_color_red { stop-color: #b22222; }
+  .legs_color_green { stop-color: #22B573; }
+  .legs_color_blue { stop-color: #226ab2; }
+  .legs_color_lime { stop-color: #74FF91; }
+  .legs_color_orange { stop-color: #FEA443; }
+  .legs_color_gray_purple { stop-color: #705E78; }
+  .legs_color_burgundy { stop-color: #812F33; }
+  .legs_color_dark_blue { stop-color: #0C4FB3; }
+  .legs_color_shady_blue { stop-color: #3B8AFF; }
+  .legs_color_sky_blue { stop-color: #66D8E8; }
+  .legs_color_dark_pink { stop-color: #D982BA; }
+  .legs_color_purple { stop-color: #BE65BF; }
+  .legs_color_dark_purple { stop-color: #7B3CA6; }
+  .legs_color_cream_white { stop-color: #DCE6F2; }
+  .legs_color_gold { stop-color: #FFE48C; }
+</style>
+
+<linearGradient id="pants_part_gradient" gradientUnits="userSpaceOnUse" x1="24.3964" y1="61.6551" x2="24.3964" y2="92.4421">
+  <stop offset="0" class="legs_{LEGS_MODIFICATION}" />
+  <stop offset="1" class="legs_{LEGS_MODIFICATION}" />
+</linearGradient>
+
+<path style="fill:url(#pants_part_gradient);" d="M15.11,61.09c0,0-0.63,2.37-0.63,4.13
+		c0,1.33,0.68,5.08,0.73,6.29c0.08,2.16,0.39,4.59,1.03,7.6c0.28,1.31-0.44,3.42-0.44,4.97c0,2.3,0.26,3.99-0.13,7.72
+		c-0.14,1.38,5.64,1.47,5.55,0.05c-0.19-2.88,0.94-6.58,1.04-7.81c0.15-1.82,0.06-3.89,0.27-4.65c0.47-1.69,0.97-5.47,1.41-7.8
+		c0.11-0.58,0.94-0.59,1.06-0.01c0.55,2.73,1.44,7.2,1.44,8.18c0,1.96-0.13,3.37,0.02,4.37c0.54,3.58,0.26,5.83-0.31,7.96
+		c-0.22,0.85,2.74,0.8,3.6,0.8c0.74,0,2.72,0.04,2.62-0.69c-0.33-2.35,0.66-5.22,1.09-8.45c0.26-1.96-0.27-3.59-0.19-4.08
+		c0.72-4.29,0.44-5.35,0.89-8.05c0.21-1.26,0.17-4.26,0.1-6.58c-0.05-1.64-0.6-3.94-0.6-3.94H15.11z"/>

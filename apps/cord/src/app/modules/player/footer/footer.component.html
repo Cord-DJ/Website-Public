@@ -1,0 +1,18 @@
+<div class="item main-menu" (click)="openPlaylist()">
+  <xui-icon>playlist-music</xui-icon>
+</div>
+
+<div class="playlist">
+  <xui-icon>check</xui-icon>
+  {{ (activePlaylist$ | async)?.name ?? ('footer.no_playlist' | translate) }}
+</div>
+
+<div style="transform: scale(0.4, 1)">
+  <div class="divider"></div>
+</div>
+<div class="playing">
+  <xui-icon>arrow-right-drop-circle-outline</xui-icon>
+  <div class="text">
+    {{ getActiveSong(activePlaylist$ | async)?.name ?? ('footer.no_song' | translate) }}
+  </div>
+</div>

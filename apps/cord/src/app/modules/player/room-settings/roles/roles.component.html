@@ -1,0 +1,90 @@
+<ng-container *ngIf="activeRole">
+  <div class="roles">
+    <div
+      class="role"
+      [class.active]="activeRole.id === role.id"
+      *ngFor="let role of roles; let idx = index"
+      (click)="selectRole(idx)"
+      [xuiContextMenuTriggerFor]="contextMenu"
+    >
+      <div class="color" [style.background-color]="role.color"></div>
+      <xui-icon class="lock" *ngIf="!canEditRole(role)">lock</xui-icon>
+      <div class="name">{{ role.name }}</div>
+
+      <xui-context-menu #contextMenu>
+        <xui-button (click)="deleteRole(role)">{{ 'roles.delete_role' | translate }}</xui-button>
+        <!-- <button *ngIf="canEdit$ | async" mat-menu-item (click)="settingsOpened = true">Settings</button> -->
+      </xui-context-menu>
+    </div>
+
+    <div class="role add" (click)="addRole()"><xui-icon>plus</xui-icon> {{ 'roles.add_new' | translate }}</div>
+  </div>
+
+  <xui-tab-group>
+    <xui-tab title="role.general">
+      <div class="general">
+        <div>
+          <label translate>role.name</label>
+          <xui-input
+            color="dark"
+            [value]="activeRole.name"
+            [disabled]="!canEditActiveRole"
+            (change)="nameChange($event)"
+          ></xui-input>
+        </div>
+
+        <div class="color-group" [class.disabled]="!canEditActiveRole">
+          <label translate>role.color</label>
+          <div
+            class="color"
+            [style.background]="activeRole.color"
+            [colorPicker]="activeRole.color"
+            (colorPickerChange)="colorChange($event)"
+            cpAlphaChannel="disabled"
+          ></div>
+        </div>
+      </div>
+    </xui-tab>
+
+    <xui-tab title="role.permissions">
+      <div class="permissions x-scrollbar-thin">
+        <div class="permission" *ngFor="let perm of permissions">
+          <div class="name">{{ 'permission.' + perm.name + '.name' | translate }}</div>
+          <div class="description">{{ 'permission.' + perm.name + '.description' | translate }}</div>
+          <xui-switch
+            [disabled]="!canEditActiveRoleIncludeEveryone"
+            [value]="hasPermission(perm.flag)"
+            (change)="changePermission(perm.flag)"
+          ></xui-switch>
+        </div>
+      </div>
+    </xui-tab>
+
+    <xui-tab title="role.members" [disabled]="isEveryoneSelected">
+      <div class="members">
+        <div class="search-menu">
+          <xui-input
+            color="dark"
+            [formControl]="searchMembersControl"
+            [placeholder]="'roles.search_members' | translate"
+          >
+            <xui-icon xuiPostfix>magnify</xui-icon>
+          </xui-input>
+          <xui-button type="raised" [disabled]="!canEditActiveRole" (click)="addMembers()">
+            {{ 'roles.add_member' | translate }}
+          </xui-button>
+        </div>
+
+        <div class="member" *ngFor="let member of roleMembers">
+          <div class="avatar">
+            <img [src]="member.user.avatarUrl" />
+          </div>
+          {{ member.user.name }}
+          <xui-button type="icon" [disabled]="!canEditActiveRole" (click)="removeMember(member)">
+            <xui-icon>close</xui-icon>
+          </xui-button>
+        </div>
+      </div>
+    </xui-tab>
+  </xui-tab-group>
+</ng-container>

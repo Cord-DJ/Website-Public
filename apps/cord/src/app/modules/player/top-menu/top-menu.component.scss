@@ -1,0 +1,43 @@
+@use 'xui';
+
+:host {
+  display: flex;
+  height: 70px;
+
+  @include xui.fill(secondary-alt);
+  @include xui.elevate(low);
+}
+
+.item {
+  flex: 0 0 70px;
+  max-width: 70px;
+  display: grid;
+  place-items: center;
+  margin-right: 3px;
+
+  @include xui.fill(secondary);
+}
+
+.item-hover {
+  z-index: 105;
+  cursor: pointer;
+
+  &:hover {
+    background-color: xui.modifier-hover();
+  }
+}
+
+cord-room-menu {
+  transform: translateY(0);
+  transition: transform ease-out 0.3s;
+
+  &.closed {
+    transform: translateY(-100%);
+  }
+}
+
+.logo {
+  width: 50%;
+  aspect-ratio: 1 / 1;
+  background: url('/assets/logo.svg');
+}

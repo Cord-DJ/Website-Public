@@ -1,0 +1,16 @@
+<ui-dialog>
+  <div class="headers">
+    <h5>Add Members</h5>
+    <!--    <h3>Administrator</h3>-->
+  </div>
+
+  <xui-input color="dark" [formControl]="searchMembersControl" placeholder="Search Members"></xui-input>
+
+  <label>Members</label>
+  <ui-select-list [formControl]="selectedMembers" [options]="members$ | async"></ui-select-list>
+
+  <ng-container ui-actions>
+    <xui-button color="minimal" (click)="close()">Cancel</xui-button>
+    <xui-button type="raised" [onClick]="addMembers">Add</xui-button>
+  </ng-container>
+</ui-dialog>

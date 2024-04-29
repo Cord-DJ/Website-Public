@@ -1,0 +1,24 @@
+<div class="top">
+  <h1>
+    <span class="gradient">Listen to Music</span>
+    with friends
+    <span class="gradient">Together</span>
+  </h1>
+  <p>Where every single song genres, artists, music taste is perfect and everyone loves it.<br /></p>
+
+  <div class="buttons">
+    <xui-button type="raised" color="secondary" shine routerLink="/auth/register">Register Now!</xui-button>
+    <xui-button type="raised" routerLink="/r">Enter Room</xui-button>
+  </div>
+
+  <img class="cord-example" alt="Cord DJ" src="/assets/cord-example.webp" />
+</div>
+
+<section class="section-1">
+  <h4>
+    Browse over
+    <span class="gradient">{{ (stats$ | async)?.popularRoomsCount ?? '--' }}</span>
+    communities
+  </h4>
+  <xui-button type="raised" class="enter-btn" routerLink="/r">TAKE ME IN</xui-button>
+</section>

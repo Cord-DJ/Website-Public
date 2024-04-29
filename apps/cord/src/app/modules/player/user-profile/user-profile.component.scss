@@ -1,0 +1,53 @@
+@use 'xui';
+
+:host {
+  height: 100%;
+  display: flex;
+  gap: 8px;
+  border-radius: 12px;
+
+  @include xui.fill(floating);
+  @include xui.elevate(high);
+}
+
+.currency {
+  flex: 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  height: fit-content;
+
+  padding: 24px;
+  border-radius: 4px;
+
+  @include xui.fill(primary);
+
+  .entry {
+    display: flex;
+    gap: 8px;
+    justify-content: space-between;
+
+    .icon {
+      width: 24px;
+      height: 24px;
+      display: grid;
+      place-items: center;
+    }
+
+    .se {
+      background: linear-gradient(0deg, var(--color-primary-600), var(--color-primary-500));
+      border-radius: 4px;
+    }
+
+    .cp {
+      width: 24px;
+      height: 24px;
+      background: linear-gradient(0deg, var(--color-error-600), var(--color-error-500));
+      border-radius: 4px;
+
+      font-size: 90%;
+      font-weight: 700;
+    }
+  }
+}

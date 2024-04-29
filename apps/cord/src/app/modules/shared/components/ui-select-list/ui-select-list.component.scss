@@ -1,0 +1,38 @@
+:host {
+  display: flex;
+  min-height: 0;
+}
+
+ul {
+  flex: 1 1 auto;
+  list-style: none;
+  overflow-y: auto;
+}
+
+li {
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  color: var(--text-normal);
+  cursor: pointer;
+
+  padding-left: 10px;
+  border-radius: 4px;
+
+  &:hover {
+    background-color: var(--color-bg-primary);
+  }
+}
+
+xui-icon {
+  margin-right: 10px;
+}
+
+.checked {
+  color: var(--color-primary-default);
+
+  &:hover {
+    color: var(--color-primary-darker);
+  }
+}

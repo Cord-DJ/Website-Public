@@ -1,0 +1,58 @@
+<nav>
+  <button class="active">GIF</button>
+  <button>Stickers</button>
+  <button>Emoji</button>
+</nav>
+
+<div class="wrapper">
+  <div class="search">
+    <xui-input size="small" color="dark" placeholder="Search..." [formControl]="search">
+      <xui-icon class="clear-search" *ngIf="hasSearch" xuiPostfix (click)="clearSearch()">close</xui-icon>
+      <xui-icon *ngIf="!hasSearch" xuiPostfix>magnify</xui-icon>
+    </xui-input>
+  </div>
+
+  <div class="gifs">
+    <ng-container *ngIf="!hasSearch">
+      <div class="entry" *ngFor="let gif of categories$ | async" (click)="searchClick(gif.searchterm)">
+        <div class="overlay"></div>
+        <div class="name">{{ gif.searchterm }}</div>
+        <img [src]="gif.image" />
+      </div>
+    </ng-container>
+    <ng-container *ngIf="hasSearch">
+      <div class="entry" *ngFor="let gif of searchResults$ | async" (click)="sendGif(gif.media[0].gif.url)">
+        <img [src]="gif.media[0].tinygif.url" />
+      </div>
+    </ng-container>
+  </div>
+
+  <!--  <div class="stuff">Container for stuff</div>-->
+  <!--  <div class="source">-->
+  <!--    <div class="src">-->
+  <!--      <mat-icon svgIcon="pencil"></mat-icon>-->
+  <!--    </div>-->
+
+  <!--    <div class="src">-->
+  <!--      <mat-icon svgIcon="pencil"></mat-icon>-->
+  <!--    </div>-->
+  <!--    <div class="src">-->
+  <!--      <mat-icon svgIcon="pencil"></mat-icon>-->
+  <!--    </div>-->
+  <!--    <div class="src">-->
+  <!--      <mat-icon svgIcon="pencil"></mat-icon>-->
+  <!--    </div>-->
+  <!--    <div class="src">-->
+  <!--      <mat-icon svgIcon="pencil"></mat-icon>-->
+  <!--    </div>-->
+  <!--    <div class="src">-->
+  <!--      <mat-icon svgIcon="pencil"></mat-icon>-->
+  <!--    </div>-->
+  <!--    <div class="src">-->
+  <!--      <mat-icon svgIcon="pencil"></mat-icon>-->
+  <!--    </div>-->
+  <!--    <div class="src">-->
+  <!--      <mat-icon svgIcon="pencil"></mat-icon>-->
+  <!--    </div>-->
+  <!--  </div>-->
+</div>

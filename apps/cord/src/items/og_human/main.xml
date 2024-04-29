@@ -1,0 +1,66 @@
+<style type="text/css">
+  .st2{fill:#FFFFFF;}
+  .st3{fill:none;stroke:#000000;stroke-linecap:round;stroke-miterlimit:10;}
+  .st4{fill:#1B1464;}
+
+  .human_skin_white { fill: #FBB03B; }
+  .human_skin_black { fill: #7c501a; }
+</style>
+
+{SKIN_PART}
+
+<g id="chest">
+  {BACK_PART}
+
+  <rect x="14" y="34" class="{RACE_MODIFICATION}" width="22" height="32"/>
+  <g id="righ_arm">
+    <rect x="9.47" y="35.11" transform="matrix(0.9518 0.3066 -0.3066 0.9518 15.3051 -1.2)" class="{RACE_MODIFICATION}" width="4" height="26"/>
+    <path class="{RACE_MODIFICATION}" d="M7.8,63.82l-2.51-0.81c-0.21-0.07-0.32-0.29-0.26-0.5l0.82-2.55l3.26,1.05L8.3,63.56 C8.23,63.77,8.01,63.88,7.8,63.82z"/>
+  </g>
+
+  <g id="left_arm">
+    <rect x="36.92" y="34.38" transform="matrix(0.9555 -0.2949 0.2949 0.9555 -12.2395 13.5834)" class="{RACE_MODIFICATION}" width="4" height="26"/>
+    <path class="{RACE_MODIFICATION}" d="M44.93,62.35l-2.52,0.78c-0.21,0.06-0.43-0.05-0.49-0.26l-0.79-2.56l3.27-1.01l0.79,2.56 C45.25,62.06,45.13,62.28,44.93,62.35z"/>
+  </g>
+
+  {SHIRT_PART}
+  {CHEST_PART}
+  {SHOULDERS_PART}
+  {HANDS_PART}
+  {WRIST_PART}
+
+  {LEFT_HAND_PART}
+  {RIGHT_HAND_PART}
+</g>
+
+<g id="head">
+  <circle class="{RACE_MODIFICATION}" cx="25" cy="24" r="16"/>
+  <path class="st3" d="M21,33c0.67,0.36,2.09,1,4,1c0.76,0,2.31-0.1,4-1"/>
+
+  {HEAD_PART}
+  {EYES_PART}
+  {HAIR_PART}
+  {FACE_PART}
+</g>
+
+{NECK_PART}
+
+<g id="legs">
+  <g id="right_foot">
+    <rect x="14" y="68.17" class="{RACE_MODIFICATION}" width="9.01" height="24.15"/>
+    <path d="M21.14,97.41h-5.27c-1.03,0-1.87-0.84-1.87-1.87v-3.22h9.01v3.22C23.01,96.58,22.17,97.41,21.14,97.41z"/>
+  </g>
+
+  <g id="left_foot">
+    <rect x="26.99" y="68.17" class="{RACE_MODIFICATION}" width="9.01" height="24.15"/>
+    <path d="M34.05,97.41h-5.12c-1.07,0-1.95-0.87-1.95-1.95v-3.15H36v3.15C36,96.54,35.13,97.41,34.05,97.41z"/>
+  </g>
+
+  {LEGS_PART}
+  {FEET_PART}
+</g>
+
+<g id="waist">
+  {WAIST_PART}
+  <rect id="belt" x="14" y="66" class="st4" width="22" height="2.17"/>
+</g>

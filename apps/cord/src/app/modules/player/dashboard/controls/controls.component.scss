@@ -1,0 +1,154 @@
+@use 'xui';
+
+:host {
+  width: 230px;
+  display: flex;
+  position: relative;
+
+  @include xui.elevate(high);
+}
+
+.controls {
+  flex: 0 1 100%;
+  display: flex;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.vote {
+  flex: 0 1 100%;
+  display: grid;
+  grid-template-rows: 7fr 3fr;
+  cursor: pointer;
+
+  font-size: 0.8rem;
+  font-weight: 500;
+  z-index: 103;
+
+  .text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding-left: 8px;
+    padding-right: 8px;
+
+    @include xui.fill(tertiary);
+  }
+
+  &:not(.selected) > .text:hover {
+    @include xui.fill(secondary);
+  }
+
+  .counter {
+    display: grid;
+    place-items: center;
+  }
+
+  &.disabled {
+    color: xui.text-muted() !important;
+    background-color: var(--color-bg-primary) !important;
+    pointer-events: none;
+
+    mat-icon {
+      color: var(--color-bg-primary) !important;
+    }
+  }
+}
+
+.dj-stats {
+  width: 80%;
+  height: 30px;
+  position: absolute;
+  left: 10%;
+  top: -30px;
+  display: flex;
+
+  font-weight: 500;
+  font-size: 0.8rem;
+
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  overflow: hidden;
+  z-index: 102;
+
+  @include xui.fill(tertiary);
+  @include xui.elevate(high);
+
+  span {
+    flex: 0 1 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    &:hover {
+      @include xui.fill(secondary);
+    }
+
+    mat-icon {
+      transform: scale(0.7);
+    }
+
+    &.disabled {
+      color: xui.text-muted();
+      pointer-events: none;
+
+      mat-icon {
+        color: xui.text-muted();
+      }
+    }
+  }
+}
+
+.green {
+  @include xui.fill(default, green);
+
+  mat-icon {
+    color: var(--color-green-default);
+  }
+}
+
+.blue {
+  @include xui.fill(default, blue);
+
+  mat-icon {
+    color: var(--color-blue-default);
+  }
+}
+
+.red {
+  @include xui.fill(default, red);
+
+  mat-icon {
+    color: var(--color-red-default);
+  }
+}
+
+.red-icon {
+  color: var(--color-red-default);
+}
+
+.blue-icon {
+  color: var(--color-blue-default);
+}
+
+.green-icon {
+  color: var(--color-green-default);
+}
+
+.muted-icon {
+  color: xui.text-muted();
+}
+
+.selected {
+  pointer-events: none;
+
+  .text {
+    background-color: initial;
+
+    mat-icon {
+      color: white;
+    }
+  }
+}

@@ -1,0 +1,72 @@
+@use 'xui';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gradient {
+  background-image: linear-gradient(211deg, #8f5cff, #1e89ef 67%, #21ace7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 5% 16px;
+
+  h1 {
+    width: 600px;
+    font-size: 3rem;
+    text-align: center;
+    line-height: 4rem;
+  }
+
+  .buttons {
+    display: flex;
+    gap: 24px;
+
+    margin: 24px 0;
+  }
+
+  .cord-example {
+    width: 80%;
+    max-width: 100%;
+    margin-top: 32px;
+    filter: drop-shadow(var(--elevation-high));
+  }
+
+  // Mobile
+  @media (max-width: 600px) {
+    h1 {
+      width: 100%;
+      font-size: 2.5rem;
+      line-height: 2.8rem;
+    }
+
+    .cord-example {
+      width: 100%;
+    }
+  }
+}
+
+p {
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.section-1 {
+  width: 90%;
+  max-width: 800px;
+  min-height: 400px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

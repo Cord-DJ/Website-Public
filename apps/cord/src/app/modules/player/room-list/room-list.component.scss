@@ -1,0 +1,160 @@
+@use 'xui';
+
+:host {
+  position: absolute;
+  inset: 0 0 0 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  z-index: 200;
+  overflow-y: auto;
+
+  @include xui.fill(secondary);
+}
+
+.close {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 60px;
+  right: 200px;
+
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.4);
+
+  xui-icon {
+    transform: scale(1.5);
+    margin-bottom: 8px;
+  }
+
+  &:hover {
+    color: white;
+  }
+}
+
+h2 {
+  //font-family: var(--font-headline);
+  //font-size: 4rem;
+  margin-top: 40px;
+  margin-bottom: 60px;
+  text-align: center;
+  //
+  //@media only screen and (max-width: 992px) {
+  //  font-size: 2rem;
+  //  margin-bottom: 30px;
+  //}
+  //
+  //@media only screen and (max-width: 600px) {
+  //  font-size: 1.5rem;
+  //  margin-bottom: 30px;
+  //}
+
+  // electron app can be dragged by this
+  -webkit-app-region: drag;
+}
+
+.list {
+  width: 80%;
+  flex: 1 1 100%;
+  display: grid;
+  grid-gap: 16px;
+  grid-template-columns: repeat(auto-fit, 300px);
+  place-content: start center;
+  padding-bottom: 24px;
+}
+
+.room {
+  width: 300px;
+  height: 330px;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  cursor: pointer;
+  position: relative;
+
+  @include xui.fill(tertiary);
+  overflow: hidden;
+  border-radius: 5px;
+  transition: 0.5s;
+
+  &:hover {
+    transform: scale(1.02);
+    @include xui.fill(floating);
+    @include xui.elevate(high);
+
+    .icon {
+      border: 4px var(--color-bg-floating) solid;
+    }
+  }
+
+  .banner {
+    width: 100%;
+    max-height: 138px;
+  }
+
+  .icon {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 105px;
+    left: 10px;
+
+    box-sizing: content-box;
+    border-radius: 50%;
+    overflow: hidden;
+    transition: 0.5s;
+
+    border: 4px var(--color-bg-tertiary) solid;
+    @include xui.fill(secondary-alt);
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .title {
+    width: inherit;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    font-weight: 500;
+    margin-top: 30px;
+    padding: 5px 10px;
+
+    .text {
+      overflow-x: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  .description {
+    padding: 8px;
+    overflow-wrap: break-word;
+  }
+
+  .count {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    gap: 4px;
+    align-items: center;
+    margin: 0 8px 8px 8px;
+
+    font-size: 0.7rem;
+    color: xui.text-muted();
+
+    .circle {
+      width: 10px;
+      height: 10px;
+
+      background-color: xui.text-muted();
+      border-radius: 50%;
+    }
+
+    .online {
+      background-color: var(--color-success-default);
+    }
+  }
+}

@@ -1,0 +1,23 @@
+<img *ngIf="itemInstance" [src]="itemInstance.item.iconRef" [xuiTooltip]="tooltip" />
+<xui-icon *ngIf="icon" [xuiTooltip]="tooltip">{{ icon }}</xui-icon>
+
+<div *ngIf="itemInstance?.availableModifications.length" [class]="'extra ' + position">
+  <div class="handle" (click)="toggleExtra()">
+    <xui-icon>{{ chevron }}</xui-icon>
+  </div>
+  <div *ngIf="extraOpened" class="content x-scrollbar-thin scrollbar-thin-primary">
+    <div
+      *ngFor="let color of availableColorModifications"
+      class="color"
+      [style.background-color]="colorModifications[color]"
+      (click)="selectModification(color)"
+    ></div>
+
+    <div
+      *ngFor="let color of availableHumanSKinColorModifications"
+      class="color"
+      [style.background-color]="humanSkinColorModifications[color]"
+      (click)="selectModification(color)"
+    ></div>
+  </div>
+</div>

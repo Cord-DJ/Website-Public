@@ -1,0 +1,91 @@
+@use 'xui';
+
+:host {
+  display: flex;
+  width: 100%;
+  padding: 24px 0;
+
+  overflow-y: auto;
+}
+
+ul {
+  width: 100%;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 6px;
+}
+
+.role-name {
+  color: xui.text-muted();
+  padding-left: 24px;
+  text-transform: uppercase;
+  font-family: var(--font-headline);
+  font-size: 0.7rem;
+}
+
+.user {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  padding: 5px 24px;
+
+  &:hover {
+    background-color: xui.modifier-hover();
+  }
+
+  .name {
+    font-weight: 500;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}
+
+.offline {
+  opacity: 0.5;
+}
+
+//.in-room {
+//  position: absolute;
+//  top: 2px;
+//  left: 20px;
+//  width: 10px;
+//  height: 10px;
+//  background-color: var(--color-blue);
+//  border-radius: 50%;
+//
+//  border: 2px var(--color-bg-secondary) solid;
+//  box-sizing: content-box;
+//}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 10px;
+
+  @include xui.fill(secondary);
+
+  img {
+    width: 100%;
+  }
+}
+
+.green {
+  color: var(--color-green-default);
+}
+
+.blue {
+  color: var(--color-blue-default);
+}
+
+.red {
+  color: var(--color-red-default);
+}

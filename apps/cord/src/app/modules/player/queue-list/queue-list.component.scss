@@ -1,0 +1,62 @@
+@use 'xui';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 24px 0;
+
+  overflow-y: auto;
+}
+
+ul {
+  width: 100%;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 6px;
+}
+
+.title {
+  color: xui.text-muted();
+  padding-left: 24px;
+  text-transform: uppercase;
+  font-family: var(--font-headline);
+  font-size: 0.7rem;
+}
+
+.user {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  padding: 5px 24px;
+
+  &:hover {
+    background-color: xui.modifier-hover();
+  }
+
+  .name {
+    font-weight: 500;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+
+  background-color: var(--color-bg-secondary);
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 10px;
+
+  img {
+    width: 100%;
+  }
+}

@@ -1,0 +1,59 @@
+<ng-container *ngIf="message" [ngSwitch]="getType(message)">
+  <div class="message-parent" *ngSwitchCase="'default'">
+    <div class="message-container hover">
+      <div class="avatar">
+        <div class="box" [userInfo]="getUser(message.user)">
+          <img [src]="getAvatar(message)" />
+        </div>
+      </div>
+      <div class="badges">
+        <xui-decagram *ngIf="getUser(message.user).isPartner" color="info" iconSize="60" xuiTooltip="Partner"
+          >handshake</xui-decagram
+        >
+        <xui-decagram
+          *ngIf="getUser(message.user).isModerator"
+          type="shield"
+          color="success"
+          iconSize="60"
+          xuiTooltip="Moderator"
+          >sword</xui-decagram
+        >
+        <xui-decagram
+          *ngIf="getUser(message.user).isStaff"
+          type="shield"
+          color="error"
+          iconSize="60"
+          xuiTooltip="Administrator"
+          >hammer-wrench</xui-decagram
+        >
+      </div>
+      <div
+        class="name selectable-text"
+        [style.color]="getUserColor(message.user.id) | async"
+        [xuiContextMenuTriggerFor]="menu.menu"
+        (click)="mentionUser(message.user)"
+      >
+        {{ getUser(message.user).name }}
+      </div>
+      <div class="time selectable-text" [xuiTooltip]="getFullTime(message.id)">{{ getTime(message.id) }}</div>
+      <div class="content selectable-text" [innerHTML]="parseText(message.text)"></div>
+    </div>
+  </div>
+
+  <cord-user-context-menu #menu [info]="getUser(message.user)"></cord-user-context-menu>
+
+  <div class="info-message selectable-text hover" *ngSwitchCase="'info'">
+    {{ message.text }}
+  </div>
+
+  <ng-container *ngSwitchCase="'cozy'">
+    <div class="cozy hover">
+      <div class="time" [xuiTooltip]="getFullTime(message.id)">{{ getCozyTime(message.id) }}</div>
+      <div class="content selectable-text" [innerHTML]="parseText(message.text)"></div>
+    </div>
+  </ng-container>
+
+  <div class="management" *ngIf="canDelete$ | async">
+    <xui-icon class="delete" (click)="deleteMessage(message)">close-thick</xui-icon>
+  </div>
+</ng-container>

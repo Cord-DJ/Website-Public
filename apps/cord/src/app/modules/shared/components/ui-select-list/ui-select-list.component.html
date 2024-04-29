@@ -1,0 +1,8 @@
+<ul>
+  <li *ngFor="let option of options" (click)="click(option[0])">
+    <xui-icon [class.checked]="hasValue(option[0])">{{
+      hasValue(option[0]) ? 'checkbox-marked-outline' : 'checkbox-blank-outline'
+    }}</xui-icon>
+    {{ option[1] }}
+  </li>
+</ul>

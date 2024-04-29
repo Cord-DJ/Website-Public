@@ -1,0 +1,22 @@
+<mat-icon svgIcon="disc-player"></mat-icon>
+
+<div class="content">
+  <div class="name">{{ currentName$ | async }}</div>
+  <div class="dj">
+    {{ 'current_song.current_dj' | translate }} <strong>{{ currentDJ$ | async }}</strong>
+  </div>
+</div>
+
+<div class="settings">
+  <div></div>
+  <mat-icon class="shaded" svgIcon="clock-outline"></mat-icon>
+  <div class="shaded">{{ remainingTime$ | async }}</div>
+
+  <div class="volume-section">
+    <div class="volume-slider">
+      <xui-slider [formControl]="volume" tooltipDisabled></xui-slider>
+    </div>
+    <mat-icon [svgIcon]="getVolumeIcon(volume.value)" (click)="toggleVolume()"></mat-icon>
+    <div class="volume-text">{{ volume.value }}%</div>
+  </div>
+</div>

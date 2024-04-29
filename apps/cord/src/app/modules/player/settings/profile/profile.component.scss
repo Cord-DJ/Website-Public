@@ -1,0 +1,28 @@
+:host {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 8px;
+}
+
+h5 {
+  grid-column: span 2;
+  padding-bottom: 50px;
+}
+
+ui-upload {
+  width: 100px;
+}
+
+.banner {
+  width: 200px;
+}
+
+.uploads {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+cord-user-info {
+  justify-self: flex-end;
+}

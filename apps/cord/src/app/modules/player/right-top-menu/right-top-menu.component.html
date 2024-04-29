@@ -1,0 +1,16 @@
+<ng-container *ngVar="activePage$ | async as page">
+  <div class="item" [class.selected]="page === 'chat'" (click)="open('chat')" xuiTooltip="Chat">
+    <xui-icon>message-text-outline</xui-icon>
+  </div>
+  <div class="item" [class.selected]="page === 'user-list'" (click)="open('user-list')" xuiTooltip="User List">
+    <xui-icon>account-group</xui-icon>
+    {{ userCount$ | async }}
+  </div>
+  <div class="item" [class.selected]="page === 'queue-list'" (click)="open('queue-list')" xuiTooltip="Queue List">
+    <xui-icon>human-greeting-proximity</xui-icon>
+    {{ queuePosition$ | async }}/{{ totalQueue$ | async }}
+  </div>
+  <div class="item item-disabled" [class.selected]="page === 'friend-list'" xuiTooltip="Friend List">
+    <xui-icon>account-multiple</xui-icon>
+  </div>
+</ng-container>

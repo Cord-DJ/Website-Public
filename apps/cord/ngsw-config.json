@@ -1,0 +1,66 @@
+{
+  "$schema": "./node_modules/@angular/service-worker/config/schema.json",
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "resources": {
+        "files": ["/index.html", "/manifest.webmanifest", "/*.css", "/*.js"]
+      }
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": ["/assets/**", "!/assets/silent-refresh.html", "!/assets/player.html", "!/assets/items/**"]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "assets-be",
+      "urls": ["https://cdn.cord.dj"],
+      "cacheConfig": {
+        "strategy": "performance",
+        "maxAge": "365d"
+      }
+    },
+    {
+      "name": "assets-items",
+      "urls": ["/assets/items/**"],
+      "cacheConfig": {
+        "strategy": "performance",
+        "maxAge": "1d"
+      }
+    },
+    {
+      "name": "api",
+      "urls": ["/api"],
+      "cacheConfig": {
+        "maxSize": 0,
+        "maxAge": "0u",
+        "strategy": "freshness"
+      }
+    },
+    {
+      "name": "gateway",
+      "urls": ["/gateway"],
+      "cacheConfig": {
+        "maxSize": 0,
+        "maxAge": "0u",
+        "strategy": "freshness"
+      }
+    },
+    {
+      "name": "silentRefresh",
+      "urls": ["/assets/silent-refresh.html", "/assets/player.html"],
+      "cacheConfig": {
+        "maxSize": 0,
+        "maxAge": "0u",
+        "strategy": "freshness"
+      }
+    }
+  ]
+}

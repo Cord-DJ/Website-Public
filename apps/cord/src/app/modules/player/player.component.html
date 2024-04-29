@@ -1,0 +1,34 @@
+<div class="content">
+  <cord-top-menu></cord-top-menu>
+
+  <div class="verify" *ngIf="showVerification$ | async">
+    Verify your E-mail address
+    <div class="verify-button" *ngIf="!verificationSent" (click)="createEmailVerification()">Send Email</div>
+    <div class="email-sent" *ngIf="verificationSent">Email sent</div>
+  </div>
+
+  <cord-dashboard [style.display]="openedPlaylist ? 'none' : ''"></cord-dashboard>
+  <cord-footer
+    [style.display]="openedPlaylist ? 'none' : ''"
+    (togglePlaylist)="openedPlaylist = !openedPlaylist"
+  ></cord-footer>
+  <cord-playlist-dialog *ngIf="openedPlaylist" (hidePlaylist)="openedPlaylist = false"></cord-playlist-dialog>
+</div>
+
+<div class="right" [ngSwitch]="activePage$ | async">
+  <cord-right-top-menu></cord-right-top-menu>
+  <cord-chat *ngSwitchCase="'chat'"></cord-chat>
+  <cord-user-list *ngSwitchCase="'user-list'"></cord-user-list>
+  <cord-queue-list *ngSwitchCase="'queue-list'"></cord-queue-list>
+  <cord-friend-list *ngSwitchCase="'friend-list'"></cord-friend-list>
+  <cord-right-bottom-menu></cord-right-bottom-menu>
+</div>
+
+<div class="status" *ngIf="(state$ | async) !== 'Ready'">
+  <div class="dialog">
+    <xui-spinner></xui-spinner>
+    {{ 'status.connecting' | translate }}
+  </div>
+</div>
+
+<cord-room-list *ngIf="isSearchOpened$ | async"></cord-room-list>

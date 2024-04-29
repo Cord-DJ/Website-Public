@@ -1,0 +1,24 @@
+<ng-container *ngVar="users$ | async as users">
+  <div class="title">{{ 'queue.title' | translate }} — {{ users?.length || 0 }}</div>
+  <ul class="list" cdkDropList (cdkDropListDropped)="drop(users, $event)">
+    <li
+      class="user"
+      *ngFor="let user of users"
+      [userInfo]="getMember(user.id).user"
+      cdkDrag
+      [cdkDragDisabled]="!(canReorder$ | async)"
+      cdkDragBoundary=".list"
+      [xuiContextMenuTriggerFor]="menu.menu"
+    >
+      <div class="avatar">
+        <img [src]="user.avatarUrl + '?size=40'" />
+      </div>
+
+      <div class="name" [style.color]="getUserColor(user.id) | async">
+        {{ user.name }}
+      </div>
+
+      <cord-user-context-menu #menu [info]="user"></cord-user-context-menu>
+    </li>
+  </ul>
+</ng-container>

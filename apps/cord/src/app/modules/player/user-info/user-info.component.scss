@@ -1,0 +1,111 @@
+@use 'xui';
+
+:host {
+  width: 300px;
+  height: 420px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  @include xui.fill(floating);
+  @include xui.elevate(high);
+
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.banner {
+  max-height: 120px;
+  flex: 0 0 120px;
+  overflow: hidden;
+
+  @include xui.fill(secondary);
+
+  img {
+    max-width: 100%;
+  }
+}
+
+.avatar {
+  position: absolute;
+  top: 75px;
+  left: 15px;
+
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-sizing: content-box;
+
+  @include xui.fill(secondary);
+  border: 5px var(--color-bg-floating) solid;
+
+  img {
+    max-width: 100%;
+  }
+}
+
+.level {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 145px;
+  left: 85px;
+  width: 20px;
+  height: 20px;
+
+  background-color: var(--color-success-default);
+  border-radius: 50%;
+  box-sizing: content-box;
+  border: 3px var(--color-bg-floating) solid;
+
+  font-size: 0.7rem;
+  font-weight: 700;
+
+  xui-icon {
+    width: 70%;
+  }
+}
+
+.name {
+  position: relative;
+  flex: 0 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 60px;
+
+  font-size: 1.2rem;
+  font-weight: 500;
+
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  .badges {
+    font-size: initial;
+    font-weight: initial;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+
+    display: flex;
+    align-items: center;
+
+    .badge {
+      width: 24px;
+      margin-left: 4px;
+    }
+
+    .early-supporter {
+      color: var(--color-red-default);
+    }
+  }
+}
+
+.content {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

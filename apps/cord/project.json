@@ -1,0 +1,124 @@
+{
+  "name": "cord",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/cord/src",
+  "prefix": "cord",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/cord/browser",
+        "index": "apps/cord/src/index.html",
+        "main": "apps/cord/src/main.ts",
+        "polyfills": "apps/cord/src/polyfills.ts",
+        "tsConfig": "apps/cord/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/cord/src/robots.txt",
+          "apps/cord/src/sitemap.xml",
+          "apps/cord/src/manifest.json",
+          "apps/cord/src/assets",
+          {
+            "glob": "mdi.svg",
+            "input": "./node_modules/@mdi/angular-material",
+            "output": "./assets"
+          },
+          {
+            "glob": "**/*",
+            "input": "./node_modules/tinymce",
+            "output": "./tinymce/"
+          },
+          {
+            "glob": "**/*",
+            "input": "./node_modules/country-flag-icons/3x2",
+            "output": "./assets/flags/"
+          }
+        ],
+        "styles": [
+          "apps/cord/src/styles.scss",
+          {
+            "input": "apps/cord/src/themes/dark.theme.scss",
+            "inject": false,
+            "bundleName": "dark.theme"
+          },
+          {
+            "input": "apps/cord/src/themes/light.theme.scss",
+            "inject": false,
+            "bundleName": "light.theme"
+          }
+        ],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/cord/src/environments/environment.ts",
+              "with": "apps/cord/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all",
+          "serviceWorker": true,
+          "ngswConfigPath": "apps/cord/ngsw-config.json"
+        },
+        "beta": {
+          "fileReplacements": [
+            {
+              "replace": "apps/cord/src/environments/environment.ts",
+              "with": "apps/cord/src/environments/environment.beta.ts"
+            }
+          ],
+          "outputHashing": "all",
+          "serviceWorker": true,
+          "ngswConfigPath": "apps/cord/ngsw-config.json"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "cord:build:production",
+          "disableHostCheck": true
+        },
+        "development": {
+          "browserTarget": "cord:build:development",
+          "disableHostCheck": true
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "cord:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/cord/**/*.ts", "apps/cord/**/*.html"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/cord/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

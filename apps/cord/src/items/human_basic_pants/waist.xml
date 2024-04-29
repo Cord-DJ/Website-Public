@@ -1,0 +1,22 @@
+<linearGradient id="belt_part_gradient" gradientUnits="userSpaceOnUse" x1="24.3799" y1="59.1645" x2="24.3799" y2="61.3043">
+  <stop offset="0" style="stop-color:#A66662"/>
+  <stop offset="0.0519" style="stop-color:#945753"/>
+  <stop offset="0.1351" style="stop-color:#7E4440"/>
+  <stop offset="0.2335" style="stop-color:#6D3632"/>
+  <stop offset="0.3553" style="stop-color:#622B27"/>
+  <stop offset="0.526" style="stop-color:#5B2622"/>
+  <stop offset="1" style="stop-color:#592420"/>
+</linearGradient>
+
+<path style="fill:url(#belt_part_gradient);" d="M15.53,59.27
+		c-0.14,0.33-0.43,1.82-0.43,1.82h18.56l-0.29-1.81L15.53,59.27z"/>
+
+<radialGradient id="belt_button_gradient" cx="24.8111" cy="60.1835" r="0.8848" gradientUnits="userSpaceOnUse">
+  <stop offset="0" style="stop-color:#915550"/>
+  <stop offset="0.2198" style="stop-color:#74413C"/>
+  <stop offset="0.5587" style="stop-color:#4E2622"/>
+  <stop offset="0.8308" style="stop-color:#371512"/>
+  <stop offset="1" style="stop-color:#2E0F0C"/>
+</radialGradient>
+
+<circle style="fill:url(#belt_button_gradient);" cx="24.81" cy="60.18" r="0.88"/>

@@ -1,0 +1,9 @@
+<div class="dialog">
+  <h5 translate>reset_password.title</h5>
+  <div>
+    <label translate>reset_password.new_password</label>
+    <xui-input type="password" color="dark" [formControl]="password"></xui-input>
+  </div>
+
+  <xui-button type="raised" (click)="changePassword()">{{ 'reset_password.button' | translate }}</xui-button>
+</div>

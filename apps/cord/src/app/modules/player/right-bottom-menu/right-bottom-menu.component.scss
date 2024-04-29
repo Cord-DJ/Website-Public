@@ -1,0 +1,110 @@
+@use 'xui';
+
+:host {
+  position: relative;
+  height: 70px;
+  @include xui.fill(tertiary);
+}
+
+.content {
+  height: 100%;
+  display: flex;
+  gap: 4px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+}
+
+.user {
+  flex: 1;
+  height: 100%;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  column-gap: 12px;
+
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 4px 12px;
+  box-sizing: content-box;
+
+  &:hover {
+    background-color: xui.modifier-hover();
+  }
+
+  .avatar {
+    grid-row: span 2;
+    aspect-ratio: 1;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  xui-status {
+    position: absolute;
+    left: 45px;
+    bottom: 3px;
+
+    box-sizing: content-box;
+    border-radius: 50%;
+    border: 3px solid var(--color-bg-tertiary);
+  }
+
+  .name {
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .level {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+
+    @include xui.typography-level(caption);
+
+    //.level {
+    //  font-weight: 700;
+    //}
+
+    .experience {
+      flex: 1;
+      position: relative;
+      height: 12px;
+      border-radius: 3px;
+
+      @include xui.fill(primary);
+
+      .gained {
+        position: absolute;
+        height: 100%;
+        background: linear-gradient(90deg, var(--color-primary-600), var(--color-primary-500));
+
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+      }
+
+      .gained {
+        background: linear-gradient(90deg, var(--color-green-600), var(--color-green-500));
+      }
+
+      .boost {
+        position: absolute;
+        height: 100%;
+        background: linear-gradient(90deg, var(--color-primary-600), var(--color-primary-500));
+        opacity: 0.3;
+      }
+    }
+  }
+}
+
+.menu-button {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}

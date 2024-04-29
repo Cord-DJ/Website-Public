@@ -1,0 +1,27 @@
+<style type="text/css">
+  .legs_color_red { fill: #b22222; }
+  .legs_color_green { fill: #22B573; }
+  .legs_color_blue { fill: #226ab2; }
+  .legs_color_lime { fill: #74FF91; }
+  .legs_color_orange { fill: #FEA443; }
+  .legs_color_gray_purple { fill: #705E78; }
+  .legs_color_burgundy { fill: #812F33; }
+  .legs_color_dark_blue { fill: #0C4FB3; }
+  .legs_color_shady_blue { fill: #3B8AFF; }
+  .legs_color_sky_blue { fill: #66D8E8; }
+  .legs_color_dark_pink { fill: #D982BA; }
+  .legs_color_purple { fill: #BE65BF; }
+  .legs_color_dark_purple { fill: #7B3CA6; }
+  .legs_color_cream_white { fill: #DCE6F2; }
+  .legs_color_gold { fill: #FFE48C; }
+</style>
+
+<g id="right_foot">
+  <rect x="14" y="68.17" class="legs_{LEGS_MODIFICATION}" width="9.01" height="24.15"/>
+  <path d="M21.14,97.41h-5.27c-1.03,0-1.87-0.84-1.87-1.87v-3.22h9.01v3.22C23.01,96.58,22.17,97.41,21.14,97.41z"/>
+</g>
+
+<g id="left_foot">
+  <rect x="26.99" y="68.17" class="legs_{LEGS_MODIFICATION}" width="9.01" height="24.15"/>
+  <path d="M34.05,97.41h-5.12c-1.07,0-1.95-0.87-1.95-1.95v-3.15H36v3.15C36,96.54,35.13,97.41,34.05,97.41z"/>
+</g>

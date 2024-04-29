@@ -1,0 +1,30 @@
+<ui-dialog>
+  <div class="content" [formGroup]="model">
+    <h5>{{ 'create_room.title' | translate }}</h5>
+    {{ 'create_room.description' | translate }}
+
+    <div class="name">
+      <label>{{ 'create_room.room_name' | translate }}</label>
+      <xui-input formControlName="name" color="dark"></xui-input>
+    </div>
+
+    <div class="info">{{ 'create_room.information' | translate }}</div>
+
+    <div class="uploads">
+      <div>
+        <label>{{ 'settings.icon_upload' | translate }}</label>
+        <xui-image-upload type="round" formControlName="icon"></xui-image-upload>
+      </div>
+
+      <div>
+        <label>{{ 'settings.banner_upload' | translate }}</label>
+        <xui-image-upload class="banner" [aspectRatio]="960 / 540" formControlName="banner"></xui-image-upload>
+      </div>
+    </div>
+  </div>
+
+  <ng-container ui-actions>
+    <xui-button color="minimal" (click)="close()">{{ 'cancel' | translate }}</xui-button>
+    <xui-button type="raised" [onClick]="create">{{ 'create_room.create' | translate }}</xui-button>
+  </ng-container>
+</ui-dialog>

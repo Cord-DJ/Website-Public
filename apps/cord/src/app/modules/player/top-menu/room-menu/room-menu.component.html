@@ -1,0 +1,32 @@
+<div class="item icon-letter" xuiTooltip="room_menu.explore" xuiTooltipPosition="right" (click)="openSearch()">
+  <xui-icon>compass</xui-icon>
+</div>
+
+<div class="item icon-letter" xuiTooltip="room_menu.create" xuiTooltipPosition="right" (click)="createRoom()">
+  <xui-icon>plus</xui-icon>
+</div>
+
+<xui-divider marginTop="4" marginBottom="4"></xui-divider>
+
+<div class="list" cdkDropList>
+  <div
+    cdkDrag
+    [cdkDragDisabled]="true"
+    class="item"
+    *ngFor="let room of rooms"
+    [xuiTooltip]="room.name"
+    xuiTooltipPosition="right"
+    [class.icon]="room.icon"
+    [class.icon-letter]="!room.icon"
+    [style.background-image]="'url(' + room.iconUrl + '?size=50)'"
+    routerLink="/r/{{ room.link }}"
+    (cdkDragStarted)="onDragStart(room)"
+    (cdkDragEnded)="onDragEnd()"
+    (cdkDragDropped)="onDragDrop($event)"
+  >
+    <!--    <div class="group-placeholder" cdkDropList [cdkDropListConnectedTo]="dls"></div>-->
+    <div class="drag-placeholder" *cdkDragPlaceholder></div>
+    <div *ngIf="isSelected(room)" class="selected"></div>
+    {{ room.icon ? '' : firstLetter(room.name) }}
+  </div>
+</div>

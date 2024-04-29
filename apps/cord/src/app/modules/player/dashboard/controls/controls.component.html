@@ -1,0 +1,73 @@
+<ng-container *ngVar="isDJ$ | async as isDJ">
+  <ng-container *ngVar="currentSong$ | async as currentSong">
+    <div class="controls">
+      <div
+        class="vote green"
+        [xuiContextMenuTriggerFor]="wootMenu"
+        [class.disabled]="isDJ || !currentSong"
+        [class.selected]="upvoted$ | async"
+        (click)="upvote()"
+      >
+        <div class="text">
+          <mat-icon svgIcon="arrow-up-bold"></mat-icon>
+          Woot!
+        </div>
+        <div class="counter">{{ totalUpvotes$ | async }}</div>
+      </div>
+
+      <div
+        class="vote blue"
+        [class.disabled]="isDJ || !currentSong"
+        [class.selected]="stealed$ | async"
+        [xuiMenuTriggerFor]="stealMenu"
+      >
+        <div class="text">
+          <mat-icon svgIcon="star"></mat-icon>
+          Steal
+        </div>
+        <div class="counter">{{ totalSteals$ | async }}</div>
+      </div>
+
+      <div
+        class="vote red"
+        [class.disabled]="isDJ || !currentSong"
+        [class.selected]="downvoted$ | async"
+        (click)="downvote()"
+      >
+        <div class="text">
+          <mat-icon svgIcon="arrow-down-bold"></mat-icon>
+          Meh
+        </div>
+        <div class="counter">{{ totalDownvotes$ | async }}</div>
+      </div>
+    </div>
+
+    <ng-container *ngIf="(isDJ || (canControl$ | async)) && currentSong">
+      <div class="dj-stats">
+        <span class="disabled">
+          <mat-icon class="blue-icon" svgIcon="dance-pole"></mat-icon>
+          Moshpit!
+        </span>
+
+        <span (click)="skip()">
+          <mat-icon class="red-icon" svgIcon="skip-next"></mat-icon>
+          Skip
+        </span>
+      </div>
+    </ng-container>
+  </ng-container>
+</ng-container>
+
+<xui-context-menu #wootMenu>
+  <xui-button (click)="toggleAutoWoot()">
+    <xui-icon *ngIf="!autoWoot" class="muted-icon">checkbox-blank-outline</xui-icon>
+    <xui-icon *ngIf="autoWoot" class="green-icon">check</xui-icon>
+    Auto Woot!
+  </xui-button>
+</xui-context-menu>
+
+<xui-context-menu #stealMenu>
+  <xui-button *ngFor="let pl of playlists$ | async" (click)="steal(pl)">
+    {{ pl.name }}
+  </xui-button>
+</xui-context-menu>

@@ -1,0 +1,105 @@
+<ng-container *ngVar="room$ | async as room">
+  <ng-container *ngVar="hasJoined$ | async as hasJoined">
+    <div class="container" [class.joined]="hasJoined" [xuiMenuTriggerFor]="contextMenu">
+      <ng-container [ngSwitch]="getDecagram(room)">
+        <xui-decagram *ngSwitchCase="'verified'" xuiTooltip="room.verified" color="success">check-bold</xui-decagram>
+        <xui-decagram *ngSwitchCase="'partnered'" xuiTooltip="room.partnered" color="info">handshake</xui-decagram>
+        <xui-decagram *ngSwitchCase="'home'" xuiTooltip="room.home" color="success">home</xui-decagram>
+        <xui-icon *ngSwitchDefault>music-note</xui-icon>
+      </ng-container>
+
+      <div class="content">
+        <div class="name">{{ room?.name }}</div>
+        <div class="hosted">
+          {{ 'channel_name.hosted_by' | translate }} <strong>{{ ownerName$ | async }}</strong>
+        </div>
+      </div>
+
+      <xui-button type="icon" color="error" *ngIf="!hasJoined" (click)="joinRoom($event)">
+        <xui-icon xuiTooltip="Join Room">heart-outline</xui-icon>
+      </xui-button>
+
+      <xui-icon *ngIf="hasJoined">chevron-down</xui-icon>
+    </div>
+
+    <div class="info" [@inOutAnimation] *ngIf="showInfo">
+      <div class="icon">
+        <img *ngIf="room.iconUrl" [src]="room.iconUrl + '?size=100'" />
+      </div>
+
+      <div class="info-content">
+        <div class="toolbar">
+          <h1>{{ room.name }}</h1>
+          <ng-container *ngIf="canEdit$ | async">
+            <xui-button type="icon" *ngIf="!editMode" (click)="edit()">
+              <xui-icon>pencil</xui-icon>
+            </xui-button>
+
+            <xui-button type="raised" *ngIf="editMode" [onClick]="save">
+              <xui-icon>content-save</xui-icon>
+            </xui-button>
+          </ng-container>
+
+          <xui-button type="icon" (click)="cancel()">
+            <xui-icon>close-thick</xui-icon>
+          </xui-button>
+        </div>
+
+        <editor
+          *ngIf="editMode"
+          class="description edit-mode"
+          [formControl]="description"
+          [init]="{
+            base_url: '/tinymce',
+            height: '100%',
+            width: '100%',
+            skin: 'oxide-dark',
+            content_css: 'dark',
+            resize: false,
+            menubar: false,
+            inline: true,
+            plugins: [
+              'advlist',
+              'autolink',
+              'lists',
+              'link',
+              'image',
+              'charmap',
+              'visualblocks',
+              'autoresize',
+              'media',
+              'table'
+            ],
+            toolbar: [
+              'undo redo | bold italic underline | blocks fontsize lineheight',
+              'forecolor backcolor | alignleft aligncenter alignright outdent indent | bullist numlist | image media blockquote link'
+            ],
+            contextmenu: 'undo redo | inserttable image media | cell row column deletetable | link',
+            powerpaste_word_import: 'clean',
+            powerpaste_html_import: 'clean'
+          }"
+        ></editor>
+
+        <div *ngIf="!editMode" class="description" [innerHtml]="unsafeHtmlContent"></div>
+      </div>
+    </div>
+
+    <xui-context-menu #contextMenu>
+      <xui-button (click)="showInfo = true">
+        {{ 'channel_name.information' | translate }}<xui-icon>information</xui-icon>
+      </xui-button>
+      <xui-button *ngIf="canEdit$ | async" (click)="openSettings()">
+        {{ 'channel_name.settings' | translate }}<xui-icon>cog</xui-icon>
+      </xui-button>
+      <hr />
+      <xui-button color="error" *ngIf="canEdit$ | async" (click)="reportRaid()">
+        {{ 'channel_name.report_raid' | translate }}<xui-icon>shield-alert</xui-icon>
+      </xui-button>
+      <xui-button color="error" *ngIf="canLeave$ | async" (click)="leaveRoom()">
+        {{ 'channel_name.leave_room' | translate }}<xui-icon>exit-to-app</xui-icon>
+      </xui-button>
+    </xui-context-menu>
+  </ng-container>
+</ng-container>
+
+<xui-settings #settings [items]="menuItems"></xui-settings>

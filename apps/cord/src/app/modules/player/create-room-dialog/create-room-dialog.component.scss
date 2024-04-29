@@ -1,0 +1,28 @@
+@use 'xui';
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.name {
+  width: 90%;
+  margin: 64px 0 32px 0;
+}
+
+h5 {
+  padding: 24px 0 12px 0;
+}
+
+.uploads {
+  width: 90%;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 20px;
+}
+
+.info {
+  width: 90%;
+  color: xui.text-muted();
+}

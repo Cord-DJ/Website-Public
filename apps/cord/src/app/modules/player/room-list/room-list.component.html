@@ -1,0 +1,27 @@
+<h2>{{ 'explore.title' | translate }}</h2>
+
+<div class="close" (click)="close()">
+  <xui-icon>close-circle-outline</xui-icon>
+  ESC
+</div>
+
+<div class="list">
+  <div class="room" *ngFor="let room of rooms$ | async" (click)="goToRoom(room)">
+    <img class="banner" [src]="room.bannerUrl + '?size=250'" />
+    <div class="icon">
+      <img [src]="room.iconUrl + '?size=50'" />
+    </div>
+    <div class="title">
+      <xui-decagram *ngIf="room.isVerified" xuiTooltip="room.verified" color="success">check-bold</xui-decagram>
+      <xui-decagram *ngIf="room.isPartnered" xuiTooltip="room.partnered" color="info">handshake</xui-decagram>
+      <div class="text">{{ room.name }}</div>
+    </div>
+    <div class="description"></div>
+    <div class="count">
+      <div class="circle online"></div>
+      {{ room.onlineCount }} {{ 'explore.online' | translate }}
+      <div class="circle"></div>
+      {{ room.memberCount }} {{ 'explore.total_members' | translate }}
+    </div>
+  </div>
+</div>

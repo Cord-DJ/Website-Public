@@ -1,0 +1,110 @@
+@use 'xui';
+
+:host {
+  flex: 0 0 70px;
+  max-width: 70px;
+  margin-right: 3px;
+  cursor: pointer;
+
+  @include xui.fill(tertiary);
+
+  &:hover {
+    background-color: xui.modifier-hover();
+  }
+}
+
+.button {
+  flex: 1 1 100%;
+  height: 100%;
+
+  display: grid;
+  place-items: center;
+}
+
+.info {
+  width: 50vw;
+  height: 60vh;
+  position: absolute;
+  top: 70px;
+  left: 25.5vw;
+  z-index: 101;
+  cursor: initial;
+  overflow-y: scroll;
+
+  @include xui.fill(floating);
+  @include xui.elevate(high);
+
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.song-entries {
+  display: grid;
+  grid-template-columns: auto;
+  gap: 4px;
+  padding: 12px 4px 12px 12px;
+
+  .song {
+    display: grid;
+    grid-template-columns: auto 1fr 20px auto;
+    align-items: center;
+    height: 64px;
+    padding: 0 12px;
+
+    @include xui.fill(secondary);
+
+    &:hover {
+      background-color: xui.modifier-hover(secondary);
+    }
+
+    img {
+      margin-right: 12px;
+    }
+
+    .votes {
+      display: flex;
+
+      div {
+        display: flex;
+        align-items: center;
+        margin-right: 4px;
+      }
+
+      .up-votes {
+        color: var(--color-green-default);
+      }
+
+      .steals {
+        color: var(--color-blue-default);
+      }
+
+      .down-votes {
+        color: var(--color-red-default);
+      }
+    }
+
+    .plus-button {
+      flex: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+
+      xui-icon {
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+
+      &:hover xui-icon {
+        color: var(--color-primary-default);
+      }
+    }
+
+    .time {
+      color: xui.text-muted();
+      font-size: 0.8rem;
+      align-self: flex-start;
+      margin-left: 8px;
+    }
+  }
+}

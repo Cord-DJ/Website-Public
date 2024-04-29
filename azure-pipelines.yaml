@@ -1,0 +1,14 @@
+trigger:
+  batch: true
+
+resources:
+  repositories:
+    - repository: pipelines
+      type: git
+      name: Core/Pipelines
+
+extends:
+  template: pipeline-website.yaml@pipelines
+  parameters:
+    dockerImage: cord/website
+    kubeNamespace: cord

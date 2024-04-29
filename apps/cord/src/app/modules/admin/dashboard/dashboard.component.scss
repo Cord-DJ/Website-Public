@@ -1,0 +1,40 @@
+:host {
+  color: var(--text-normal);
+}
+
+xui-layout {
+  height: 100vh;
+}
+
+xui-header {
+  background: var(--color-bg-secondary-alt);
+}
+
+xui-content {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(auto-fill, 250px);
+  padding: 8px;
+
+  background-color: var(--color-bg-primary);
+}
+
+xui-sider {
+  background-color: var(--color-bg-secondary);
+}
+
+xui-card {
+  grid-column: span 6;
+  //background-color: white;
+  background-color: var(--color-bg-secondary-alt);
+  padding: 8px;
+
+  ::ng-deep .xui-card-content {
+    display: block;
+  }
+}
+
+.demo-chart {
+  height: 230px;
+}

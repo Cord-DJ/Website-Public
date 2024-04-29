@@ -1,0 +1,142 @@
+@use 'xui';
+
+:host {
+  position: relative;
+
+  &:hover .management {
+    display: flex;
+  }
+}
+
+.message-parent {
+  margin-top: 10px;
+}
+
+.message-container {
+  display: grid;
+  grid-template-columns: auto auto auto 1fr;
+  grid-template-rows: auto 1fr;
+  padding: 2px 0;
+  align-items: center;
+
+  .avatar {
+    grid-row: 1 / 3;
+
+    .box {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+
+      border-radius: 50%;
+      margin: 5px 10px;
+      overflow: hidden;
+      cursor: pointer;
+
+      @include xui.fill(secondary);
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  .name {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .badges {
+    font-size: initial;
+    font-weight: initial;
+
+    display: flex;
+    align-items: center;
+    margin-right: 2px;
+  }
+
+  .time {
+    color: xui.text-muted();
+    font-size: 0.8rem;
+    margin-left: 8px;
+    align-self: center;
+  }
+
+  .content {
+    grid-column: span 3;
+    overflow-wrap: break-word;
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+}
+
+.info-message {
+  color: xui.text-muted();
+  padding: 2px 0;
+}
+
+.cozy {
+  display: grid;
+  grid-template-columns: 68px 1fr;
+  padding: 2px 0;
+
+  .time {
+    visibility: hidden;
+    justify-self: center;
+    align-self: center;
+
+    color: xui.text-muted();
+    font-size: 0.8rem;
+  }
+
+  &:hover .time {
+    visibility: visible;
+  }
+
+  .content {
+    overflow: hidden;
+    overflow-wrap: break-word;
+  }
+}
+
+.hover:hover {
+  background-color: xui.modifier-hover();
+}
+
+.management {
+  display: none;
+  position: absolute;
+  top: -15px;
+  right: 15px;
+
+  align-items: center;
+  padding: 4px;
+  border-radius: 4px;
+
+  @include xui.fill(tertiary);
+  @include xui.elevate(stroke);
+
+  xui-icon {
+    height: 1.2rem;
+  }
+
+  .delete {
+    cursor: pointer;
+    color: var(--color-error-default);
+
+    &:hover {
+      color: var(--color-error-darker);
+    }
+  }
+}
+
+::ng-deep .mention {
+  padding: 0 4px;
+  font-weight: 500;
+  border-radius: 3px;
+
+  @include xui.fill(default, primary);
+}

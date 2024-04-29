@@ -1,0 +1,162 @@
+@use 'xui';
+
+:host {
+  display: flex;
+  flex: 0 1 40%;
+  min-width: 0;
+
+  padding-left: 10px;
+  padding-right: 10px;
+
+  border-right: 1px solid xui.modifier-accent();
+}
+
+.container {
+  flex: 0 1 100%;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  min-width: 0;
+  align-items: center;
+  height: 100%;
+
+  &.joined {
+    cursor: pointer;
+  }
+}
+
+.content {
+  overflow: hidden;
+  font-size: 1.2rem;
+  margin-left: 10px;
+
+  .name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .hosted {
+    color: xui.text-muted();
+    font-size: 0.7rem;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    strong {
+      color: var(--header-primary);
+    }
+  }
+}
+
+.info {
+  width: 50vw;
+  height: 60vh;
+  position: absolute;
+  top: 70px;
+  left: 15vw;
+  z-index: 101;
+  cursor: initial;
+
+  @include xui.fill(floating);
+  @include xui.elevate(high);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+
+  .icon {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    top: 50px;
+    left: -54px;
+
+    box-sizing: content-box;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 8px var(--color-bg-floating) solid;
+
+    @include xui.fill(secondary-alt);
+
+    img {
+      width: 100%;
+    }
+  }
+}
+
+.info-content {
+  position: absolute;
+  inset: 0 0 0 0;
+
+  display: flex;
+  flex-direction: column;
+  margin: 20px 20px 20px 70px;
+
+  .toolbar {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+  }
+
+  .description {
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+
+  editor {
+    @include xui.fill(secondary-alt);
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+  }
+
+  &,
+  &::ng-deep {
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    h3 {
+      font-size: 1.17rem;
+      font-weight: 700;
+    }
+
+    h4 {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    h5 {
+      font-size: 0.83rem;
+      font-weight: 700;
+    }
+
+    h6 {
+      font-size: 0.67rem;
+      font-weight: 700;
+    }
+
+    strong {
+      font-weight: 700;
+    }
+
+    em {
+      font-style: italic;
+    }
+
+    .edit-mode {
+      td {
+        border: 1px xui.text-muted() dashed;
+      }
+    }
+
+    img {
+      object-fit: cover;
+      max-width: 100%;
+    }
+  }
+}

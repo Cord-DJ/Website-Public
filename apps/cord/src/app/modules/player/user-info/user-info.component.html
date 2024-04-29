@@ -1,0 +1,25 @@
+<div class="banner">
+  <img *ngIf="banner" [src]="banner" />
+</div>
+<div class="avatar">
+  <img *ngIf="avatar" [src]="avatar" />
+</div>
+<div class="level" *ngIf="info?.isStaff; else level">
+  <xui-icon>skull</xui-icon>
+</div>
+<ng-template #level>
+  <div class="level">{{ info?.level }}</div>
+</ng-template>
+<div class="name">
+  <div class="badges">
+    <xui-decagram *ngIf="info?.isStaff" xuiTooltip="Administrator" type="shield" color="error"
+      >hammer-wrench</xui-decagram
+    >
+    <xui-decagram *ngIf="info?.isModerator" type="shield" color="success" xuiTooltip="Moderator">sword</xui-decagram>
+    <xui-decagram *ngIf="info?.isPartner" xuiTooltip="Partner" color="info">handshake</xui-decagram>
+    <xui-icon *ngIf="info?.isEarlySupporter" class="early-supporter" xuiTooltip="Early Supporter">charity</xui-icon>
+    <img *ngIf="info?.hasTurbo" class="badge" src="/assets/badges/turbo.webp" xuiTooltip="Turbo" />
+  </div>
+  {{ info?.name }}
+</div>
+<div class="content"></div>

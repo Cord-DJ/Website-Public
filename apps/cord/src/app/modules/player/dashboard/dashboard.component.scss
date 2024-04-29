@@ -1,0 +1,194 @@
+@use 'xui';
+
+:host {
+  position: relative;
+  flex: 1 1 100%;
+  max-width: 100%;
+
+  display: flex;
+
+  //background: center bottom no-repeat;
+  //background-size: auto 100%;
+}
+
+.update-button {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  color: var(--color-success-default);
+  transform: scale(1.3);
+
+  &:hover {
+    cursor: pointer;
+    color: var(--color-success-darker);
+  }
+}
+
+.youtube-wrapper {
+  position: absolute;
+  transform: translate(-50%, 0%);
+  left: 50%;
+}
+
+.buttons {
+  user-select: none;
+  position: absolute;
+  bottom: 15%;
+
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-around;
+
+  z-index: 103;
+
+  .join {
+    position: relative;
+    width: 180px;
+    height: 90%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    cursor: pointer;
+
+    border-radius: 5px;
+    padding-right: 24px;
+
+    font-weight: 500;
+
+    @include xui.fill(tertiary);
+    @include xui.elevate(high);
+
+    .icon {
+      position: absolute;
+      width: 70px;
+      left: -30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      aspect-ratio: 1;
+      outline: 5px solid var(--color-bg-tertiary);
+      outline-offset: -10px;
+      border-radius: 50%;
+    }
+
+    .blue {
+      background-color: var(--color-blue-default);
+    }
+
+    .red {
+      background-color: var(--color-red-default);
+    }
+
+    &:hover {
+      @include xui.fill(secondary);
+
+      .icon {
+        outline-color: var(--color-bg-secondary);
+      }
+    }
+  }
+
+  .disabled {
+    cursor: not-allowed;
+  }
+}
+
+.avatars {
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  height: 15%;
+  width: 60%;
+
+  transform: translate(-50%, -50%);
+
+  @media only screen and (max-height: 820px) {
+    width: 82vh;
+  }
+}
+
+.origin {
+  position: absolute;
+}
+
+cord-avatar {
+  position: absolute;
+  transform: translate(-50%, -100%);
+
+  width: 70px;
+  aspect-ratio: 1 / 2;
+}
+
+.dj-place {
+  position: absolute;
+  top: 91%;
+  left: 50.2%;
+  z-index: 104;
+}
+
+@keyframes avatar-anim {
+  0% {
+    top: 0;
+    left: 0;
+  }
+  25% {
+    top: -20px;
+    left: -5px;
+  }
+  50% {
+    top: 0;
+    left: 0;
+  }
+  75% {
+    top: -20px;
+    left: 5px;
+  }
+  100% {
+    top: 0;
+    left: 0;
+  }
+}
+
+.wooted {
+  cord-avatar {
+    animation: avatar-anim 1s linear infinite;
+  }
+}
+
+.exp {
+  position: absolute;
+  left: 42%;
+  bottom: 100px;
+
+  color: var(--color-primary-default);
+  opacity: 0;
+  font-family: var(--font-headline);
+  font-size: 3rem;
+  font-weight: 700;
+  animation: exp-anim 2s linear;
+  z-index: 102;
+
+  .highlight {
+    color: white;
+  }
+}
+
+.level {
+  color: var(--color-yellow-default);
+}
+
+@keyframes exp-anim {
+  0% {
+    bottom: 100px;
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    bottom: 50%;
+    opacity: 0;
+  }
+}

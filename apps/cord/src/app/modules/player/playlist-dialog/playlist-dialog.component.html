@@ -1,0 +1,124 @@
+<div class="top">
+  <div class="hide-button" (click)="hidePlaylist.emit()">
+    <mat-icon svgIcon="chevron-down"></mat-icon>
+  </div>
+
+  <xui-input
+    [placeholder]="'playlist.search' | translate"
+    color="dark"
+    size="small"
+    [formControl]="search"
+    [dataList]="results$ | async"
+  >
+    <xui-icon xuiPostfix>magnify</xui-icon>
+  </xui-input>
+</div>
+
+<div class="content" cdkDropListGroup *ngVar="selectedPlaylist$ | async as selectedPlaylist">
+  <!-- Left Menu -->
+  <div class="menu">
+    <h6 translate>playlist.your_playlists</h6>
+    <div class="list">
+      <div
+        [class.selected-item]="playlist.id === selectedPlaylist?.id"
+        class="menu-item"
+        *ngFor="let playlist of playlists$ | async"
+        (click)="showPlaylist(playlist)"
+        cdkDropList
+        (cdkDropListDropped)="moveOrAdd($event.item.data, playlist)"
+      >
+        <div class="is-active">
+          <mat-icon *ngIf="playlist?.id === (activePlaylist$ | async)?.id" svgIcon="check-bold"></mat-icon>
+        </div>
+        <div class="name">{{ playlist.name }}</div>
+        <div class="count">
+          <xui-spinner *ngIf="playlist.isProcessing; else showNum"></xui-spinner>
+          <ng-template #showNum>{{ playlist.songs.length }}</ng-template>
+        </div>
+      </div>
+    </div>
+    <div class="footer-menu">
+      <div class="btn import-btn" (click)="importPlaylist()">
+        <mat-icon svgIcon="plus"></mat-icon>
+        {{ 'playlist.import' | translate }}
+      </div>
+      <div class="btn create-btn" (click)="createPlaylist()">
+        <mat-icon svgIcon="plus"></mat-icon>
+        {{ 'playlist.create' | translate }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="playlist">
+    <div class="top-menu">
+      <div class="title">{{ selectedPlaylist?.name }}</div>
+      <ng-container *ngIf="selectedPlaylist?.id">
+        <div
+          class="btn"
+          xuiTooltip="playlist.set_active"
+          [style.visibility]="selectedPlaylist?.id === (activePlaylist$ | async)?.id ? 'hidden' : ''"
+          (click)="activatePlaylist()"
+        >
+          <mat-icon svgIcon="check-bold"></mat-icon>
+        </div>
+        <div class="btn" xuiTooltip="playlist.edit_name" (click)="editPlaylistName()">
+          <mat-icon svgIcon="pencil"></mat-icon>
+        </div>
+        <div class="btn btn-danger" xuiTooltip="playlist.delete" (click)="deletePlaylist()">
+          <mat-icon svgIcon="delete"></mat-icon>
+        </div>
+      </ng-container>
+    </div>
+
+    <div class="songs" cdkDropList (cdkDropListDropped)="reorder($event)">
+      <!-- Search -->
+      <ng-container *ngIf="!selectedPlaylist?.id; else playlistComponent">
+        <div class="song" *ngFor="let song of selectedPlaylist?.songs" cdkDrag [cdkDragData]="song">
+          <img width="40" src="https://img.youtube.com/vi/{{ song.youtubeId }}/mqdefault.jpg" />
+          <div class="author">{{ song.author }}</div>
+          <div class="name">{{ song.name }}</div>
+          <mat-icon svgIcon="plus" [xuiMenuTriggerFor]="addPlaylistMenu"></mat-icon>
+          <div class="length">{{ song.duration }}</div>
+
+          <div *cdkDragPreview>
+            <img width="40" src="https://img.youtube.com/vi/{{ song.youtubeId }}/mqdefault.jpg" />
+            <div class="name">{{ song.name }}</div>
+          </div>
+
+          <xui-context-menu #addPlaylistMenu>
+            <xui-button *ngFor="let pl of playlists$ | async" (click)="moveOrAdd({ youtubeId: song.youtubeId }, pl)">
+              {{ pl.name }}
+            </xui-button>
+          </xui-context-menu>
+        </div>
+      </ng-container>
+
+      <ng-template #playlistComponent>
+        <div
+          class="song"
+          [class.selected-item]="song.id === selectedPlaylist?.nextSongId"
+          *ngFor="let song of selectedPlaylist?.songs"
+          (click)="selectNextSong(song)"
+          cdkDrag
+          [cdkDragData]="song"
+        >
+          <img width="40" src="https://img.youtube.com/vi/{{ song.youtubeId }}/mqdefault.jpg" />
+          <div class="author">{{ song.author }}</div>
+          <div class="name">{{ song.name }}</div>
+          <mat-icon
+            class="delete-icon"
+            svgIcon="delete"
+            (click)="deleteSong(song); $event.stopPropagation()"
+          ></mat-icon>
+          <div class="length">{{ song.duration }}</div>
+
+          <div *cdkDragPreview>
+            <img width="40" src="https://img.youtube.com/vi/{{ song.youtubeId }}/mqdefault.jpg" />
+            <div class="name">{{ song.name }}</div>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

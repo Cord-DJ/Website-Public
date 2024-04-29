@@ -1,0 +1,38 @@
+@use 'xui';
+
+:host {
+  display: flex;
+  height: 70px;
+
+  @include xui.elevate(low);
+}
+
+.item {
+  width: 100%;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 700;
+  cursor: pointer;
+  border-right: 3px solid var(--color-bg-tertiary);
+
+  @include xui.fill(secondary);
+
+  &:hover {
+    background-color: xui.modifier-hover();
+  }
+
+  &-disabled,
+  &-disabled:hover {
+    cursor: not-allowed;
+    color: var(--color-bg-primary);
+    background-color: var(--color-bg-tertiary);
+  }
+}
+
+.selected,
+.selected:hover {
+  background-color: xui.modifier-active();
+}

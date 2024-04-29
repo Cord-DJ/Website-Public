@@ -1,0 +1,36 @@
+<div class="dialog">
+  <h5>{{ 'registration.title' | translate }}</h5>
+  <form class="form" [formGroup]="model">
+    <div>
+      <label>{{ 'email' | translate }}</label>
+      <xui-input formControlName="email" [placeholder]="'email' | translate"></xui-input>
+    </div>
+
+    <div class="next-field">
+      <label>{{ 'password' | translate }}</label>
+      <xui-input formControlName="password" [placeholder]="'password' | translate" type="password"></xui-input>
+    </div>
+
+    <div class="next-field">
+      <label>{{ 'registration.confirm_password' | translate }}</label>
+      <xui-input
+        formControlName="confirmPassword"
+        [placeholder]="'registration.confirm_password' | translate"
+        type="password"
+      ></xui-input>
+    </div>
+
+    <div class="next-field">
+      <label>{{ 'registration.displayed_name' | translate }}</label>
+      <xui-input formControlName="name" [placeholder]="'registration.displayed_name' | translate"></xui-input>
+    </div>
+
+    <ng-hcaptcha theme="dark" formControlName="captcha"></ng-hcaptcha>
+    <div class="error-text" *ngIf="hasCaptchaError">{{ 'registration.captcha_not_resolved' | translate }}</div>
+    <xui-button type="raised" [onClick]="register">
+      {{ 'registration.button' | translate }}
+    </xui-button>
+  </form>
+
+  <a class="login" routerLink="/auth/login">{{ 'registration.login_link' | translate }}</a>
+</div>

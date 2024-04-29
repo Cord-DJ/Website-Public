@@ -1,0 +1,42 @@
+<div class="controls">
+  <xui-toggle [formControl]="notificationSound" xuiTooltip="Notification sound">bell</xui-toggle>
+  <xui-toggle [formControl]="videoVisible" xuiTooltip="Hide Video">monitor</xui-toggle>
+</div>
+
+<div #messages class="messages x-scrollbar-thin scrollbar-thin-primary" (scroll)="userScrolled()">
+  <ng-container *ngIf="hasJoined$ | async; else joinNow">
+    <ng-container *ngFor="let message of messages$ | async">
+      <cord-message [message]="message"></cord-message>
+    </ng-container>
+  </ng-container>
+
+  <ng-template #joinNow>
+    <div class="join-message" *ngIf="(hasJoined$ | async) === false">
+      <xui-icon xuiTooltip="chat.join_button" (click)="joinRoom()">heart</xui-icon>
+      {{ 'chat.join_room' | translate }}
+    </div>
+  </ng-template>
+</div>
+
+<div class="input">
+  <xui-input
+    [disabled]="isDisabled$ | async"
+    [placeholder]="(inputPlaceholder$ | async) ?? '' | translate"
+    [formControl]="text"
+    (keyup.enter)="send()"
+  >
+    <xui-icon
+      class="emoji-button"
+      xuiPostfix
+      cdkOverlayOrigin
+      #emojiButton="cdkOverlayOrigin"
+      [class.disabled]="isDisabled$ | async"
+      (click)="toggleEmojiPicker()"
+      >emoticon-cool</xui-icon
+    >
+  </xui-input>
+</div>
+
+<ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="emojiButton" [cdkConnectedOverlayOpen]="isEmojiOpen">
+  <cord-emoji-picker></cord-emoji-picker>
+</ng-template>

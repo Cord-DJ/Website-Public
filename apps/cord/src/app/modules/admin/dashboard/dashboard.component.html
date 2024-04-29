@@ -1,0 +1,14 @@
+<xui-layout>
+  <xui-sider [width]="280">Sider</xui-sider>
+  <xui-layout>
+    <xui-header>Header</xui-header>
+    <xui-content>
+      <xui-card>
+        <div echarts [options]="chartOption" class="demo-chart" theme="dark"></div>
+      </xui-card>
+      <xui-card>
+        <div echarts [options]="chartOption" class="demo-chart"></div>
+      </xui-card>
+    </xui-content>
+  </xui-layout>
+</xui-layout>

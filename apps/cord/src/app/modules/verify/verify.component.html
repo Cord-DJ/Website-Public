@@ -1,0 +1,10 @@
+<div class="dialog">
+  <h4>{{ 'verify_email.title' | translate }}</h4>
+  <div class="content">
+    <ng-hcaptcha theme="dark" [formControl]="captcha"></ng-hcaptcha>
+    <div class="error-text" *ngIf="hasCaptchaError">{{ 'registration.captcha_not_resolved' | translate }}</div>
+    <div class="error-text" *ngIf="errorLinkIsNotValid">Verification link is not valid anymore</div>
+
+    <xui-button type="raised" (click)="verifyEmail()">{{ 'verify_email.button' | translate }}</xui-button>
+  </div>
+</div>
